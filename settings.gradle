@@ -1,2 +1,3 @@
+include ':business'
 include ':app'
 rootProject.name = "Reddit Reader"
