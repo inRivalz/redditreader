@@ -1,6 +1,6 @@
 package com.inrivalz.redditreader.network.api
 
-import com.inrivalz.redditreader.network.data.JsonRedditResponse
+import com.inrivalz.redditreader.network.data.JsonRedditListing
 import io.reactivex.Single
 import retrofit2.http.GET
 import retrofit2.http.Query
@@ -8,12 +8,12 @@ import retrofit2.http.Query
 internal interface RedditApi {
 
     @GET("/r/top.json")
-    fun getTop(@Query("limit") limit: Int): Single<JsonRedditResponse>
+    fun getTop(@Query("limit") limit: Int): Single<JsonRedditListing>
 
     @GET("/r/top.json")
     fun getTopAfter(
         @Query("after") after: String,
         @Query("limit") limit: Int
-    ): Single <JsonRedditResponse>
+    ): Single <JsonRedditListing>
 
 }

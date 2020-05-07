@@ -10,6 +10,8 @@ versions.rxjava = "2.2.12"
 versions.koin = "2.1.5"
 versions.junit = "4.12"
 versions.junit_ext = "1.1.1"
+versions.assertj = "3.16.0"
+versions.mockito_kotlin = "2.2.0"
 versions.espresso = "3.2.0"
 
 def kotlin = [:]
@@ -36,10 +38,12 @@ rxjava.runtime = "io.reactivex.rxjava2:rxjava:$versions.rxjava"
 
 def koin = [:]
 koin.core = "org.koin:koin-core:$versions.koin"
-koin.test= "org.koin:koin-test:$versions.koin"
+koin.test = "org.koin:koin-test:$versions.koin"
 
 def tests = [:]
 tests.junit = "junit:junit:$versions.junit"
+tests.assertj = "org.assertj:assertj-core:$versions.assertj"
+tests.mockito = "com.nhaarman.mockitokotlin2:mockito-kotlin:$versions.mockito_kotlin"
 
 def uitests = [:]
 uitests.espresso_core = "androidx.test.espresso:espresso-core:$versions.espresso"

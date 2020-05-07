@@ -9,6 +9,10 @@ java {
     targetCompatibility = JavaVersion.VERSION_1_7
 }
 
+test {
+    useJUnit()
+}
+
 dependencies {
     implementation deps.kotlin.stdlib
     implementation deps.kotlinx.serialization_runtime
@@ -16,4 +20,8 @@ dependencies {
     implementation deps.retrofit.runtime
     implementation deps.retrofit.kotlinx_converter
     implementation deps.retrofit.adapter_rxjava
+
+    testImplementation deps.tests.junit
+    testImplementation deps.tests.assertj
+    testImplementation deps.tests.mockito
 }
