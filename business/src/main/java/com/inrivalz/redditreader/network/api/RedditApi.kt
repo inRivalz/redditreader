@@ -11,6 +11,9 @@ internal interface RedditApi {
     fun getTop(@Query("limit") limit: Int): Single<JsonRedditResponse>
 
     @GET("/r/top.json")
-    fun getTopAfter(@Query("after") after: String, @Query("limit") limit: Int): Single <JsonRedditResponse>
+    fun getTopAfter(
+        @Query("after") after: String,
+        @Query("limit") limit: Int
+    ): Single <JsonRedditResponse>
 
 }
