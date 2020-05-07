@@ -12,6 +12,8 @@ java {
 dependencies {
     implementation deps.kotlin.stdlib
     implementation deps.kotlinx.serialization_runtime
+    implementation deps.rxjava.runtime
     implementation deps.retrofit.runtime
     implementation deps.retrofit.kotlinx_converter
+    implementation deps.retrofit.adapter_rxjava
 }
