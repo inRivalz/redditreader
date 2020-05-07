@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Reddit Orange and 20% less saturation: https://convertingcolors.com/rgb-color-255_87_0.html -->
+    <color name="orange100">#FF5700</color>
+    <color name="orange80">#FF9042</color>
+    <color name="teal200">#03DAC5</color>
+</resources>
