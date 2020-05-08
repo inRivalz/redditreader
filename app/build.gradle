@@ -3,6 +3,7 @@ plugins {
     id 'kotlin-android'
     id 'kotlin-android-extensions'
 }
+apply from: "${rootDir}/jacoco.gradle"
 
 android {
     compileSdkVersion 29

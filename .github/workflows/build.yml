@@ -16,6 +16,7 @@ jobs:
 
     steps:
     - uses: actions/checkout@v2
+    - run: git fetch --prune origin $GITHUB_BASE_REF
 
     - name: Set up JDK
       uses: actions/setup-java@v1
@@ -29,8 +30,13 @@ jobs:
       run: ./gradlew lintDebug
     
     - name: Run Unit Tests
-      run: ./gradlew test
-      
+      run: ./gradlew test testDebugUnitTestCoverage
+
+    - name: Run Sonar task
+      run: ./gradlew sonarqube
+      env:
+        SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+
     - name: Assemble Debug APK
       run: ./gradlew assembleDebug
 
