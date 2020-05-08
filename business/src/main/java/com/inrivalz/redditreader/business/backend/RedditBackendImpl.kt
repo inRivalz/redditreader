@@ -1,6 +1,7 @@
 package com.inrivalz.redditreader.business.backend
 
 import com.inrivalz.redditreader.business.entities.RedditPost
+import com.inrivalz.redditreader.business.map.toRedditPost
 import com.inrivalz.redditreader.network.api.RedditApi
 import io.reactivex.Single
 
@@ -9,10 +10,14 @@ internal class RedditBackendImpl(
 ) : RedditBackend {
 
     override fun getTop(limit: Int): Single<List<RedditPost>> {
-        TODO("Not yet implemented")
+        return redditApi.getTop(limit).map { listing ->
+            listing.data.children.map { child -> child.post.toRedditPost() }
+        }
     }
 
     override fun getTopAfter(after: String, limit: Int): Single<List<RedditPost>> {
-        TODO("Not yet implemented")
+        return redditApi.getTopAfter(after, limit).map { listing ->
+            listing.data.children.map { child -> child.post.toRedditPost() }
+        }
     }
 }
