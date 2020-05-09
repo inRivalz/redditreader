@@ -6,12 +6,20 @@ buildscript {
     repositories {
         google()
         jcenter()
+        maven {
+            url "https://plugins.gradle.org/m2/"
+        }
     }
     dependencies {
         classpath "com.android.tools.build:gradle:4.1.0-alpha08"
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
+        classpath "org.jlleitschuh.gradle:ktlint-gradle:9.2.1"
+        classpath "org.sonarsource.scanner.gradle:sonarqube-gradle-plugin:2.8"
     }
 }
+
+apply plugin: 'org.sonarqube'
+apply plugin: "org.jlleitschuh.gradle.ktlint"
 
 allprojects {
     repositories {
@@ -20,6 +28,30 @@ allprojects {
     }
 }
 
+subprojects {
+    apply plugin: "org.jlleitschuh.gradle.ktlint"
+}
+
 task clean(type: Delete) {
     delete rootProject.buildDir
+}
+
+sonarqube {
+    properties {
+        property "sonar.projectKey", "inRivalz_redditreader"
+        property "sonar.organization", "inrivalz"
+        property "sonar.host.url", "https://sonarcloud.io"
+        property "sonar.pullrequest.provider", "GitHub"
+        property "sonar.pullrequest.github.repository", "${System.env.GITHUB_REPOSITORY}"
+        property "sonar.pullrequest.base", "${System.env.GITHUB_BASE_REF}"
+        property "sonar.pullrequest.branch", "${System.env.GITHUB_HEAD_REF}"
+        property "sonar.pullrequest.key", getPullRequestID()
+        property "sonar.login", "${System.env.SONAR_TOKEN}"
+        property "sonar.modules", "${rootProject.subprojects.collect { ":${it.name}" }.join(',')}"
+        property "sonar.coverage.jacoco.xmlReportPaths", "build/reports/jacoco.xml"
+    }
+}
+
+static def getPullRequestID() {
+    return System.getenv("GITHUB_REF").split("/")[2]
 }

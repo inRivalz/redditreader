@@ -1,0 +1,48 @@
+# This is a basic workflow to help you get started with Actions
+
+name: Reddit Reader CI
+
+# Controls when the action will run. Triggers the workflow on push or pull request
+# events but only for the master branch
+on:
+  push:
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+    - run: git fetch --prune origin $GITHUB_BASE_REF
+
+    - name: Set up JDK
+      uses: actions/setup-java@v1
+      with:
+        java-version: 1.8
+        
+    - name: Run Kotlin Lint
+      run: ./gradlew ktlintCheck
+    
+    - name: Run Android Lint
+      run: ./gradlew lintDebug
+    
+    - name: Run Unit Tests
+      run: ./gradlew test testDebugUnitTestCoverage
+
+    - name: Run Sonar task
+      run: ./gradlew sonarqube
+      env:
+        SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+
+    - name: Assemble Debug APK
+      run: ./gradlew assembleDebug
+
+    # Commented for now, Takes too long and it's failing
+    #- name: Run UI Tests
+    #  uses: reactivecircus/android-emulator-runner@v2.8.0
+    #  with:
+    #    api-level: 26
+    #    script: ./gradlew connectedCheck
