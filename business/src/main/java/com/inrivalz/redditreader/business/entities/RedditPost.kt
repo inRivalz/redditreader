@@ -1,6 +1,6 @@
 package com.inrivalz.redditreader.business.entities
 
-internal data class RedditPost(
+data class RedditPost(
     val title: String,
     val author: String,
     val created: Long,
