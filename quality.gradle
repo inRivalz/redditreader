@@ -1,0 +1,10 @@
+ext.jacocoExceptions = [
+        '**/R.class',
+        '**/R$*.class',
+        '**/BuildConfig.*',
+        '**/Manifest*.*',
+        '**/*Test*.*',
+        '**/*Activity.*',
+        '**/*Application.*',
+        'android/**/*.*'
+]

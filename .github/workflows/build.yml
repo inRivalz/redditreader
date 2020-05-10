@@ -30,7 +30,7 @@ jobs:
       run: ./gradlew lintDebug
     
     - name: Run Unit Tests
-      run: ./gradlew test testDebugUnitTestCoverage
+      run: ./gradlew test jacocoTestReport
 
     - name: Run Sonar task
       run: ./gradlew sonarqube

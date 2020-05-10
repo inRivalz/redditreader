@@ -15,6 +15,7 @@ buildscript {
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
         classpath "org.jlleitschuh.gradle:ktlint-gradle:9.2.1"
         classpath "org.sonarsource.scanner.gradle:sonarqube-gradle-plugin:2.8"
+        classpath "com.hiya:jacoco-android:0.2"
     }
 }
 
@@ -48,7 +49,21 @@ sonarqube {
         property "sonar.pullrequest.key", getPullRequestID()
         property "sonar.login", "${System.env.SONAR_TOKEN}"
         property "sonar.modules", "${rootProject.subprojects.collect { ":${it.name}" }.join(',')}"
-        property "sonar.coverage.jacoco.xmlReportPaths", "build/reports/jacoco.xml"
+    }
+}
+
+subprojects {
+    afterEvaluate {
+        def exceptions = ""
+        if (project.hasProperty("jacocoAndroidUnitTestReport")) {
+            exceptions = project.jacocoAndroidUnitTestReport.excludes.join(',')
+        }
+        sonarqube {
+            properties {
+                property "sonar.coverage.jacoco.xmlReportPaths", "build/jacoco/jacoco.xml"
+                property "sonar.coverage.exclusions", exceptions
+            }
+        }
     }
 }
 

@@ -1,7 +1,7 @@
 plugins {
     id 'java-library'
     id 'kotlin'
-    id 'org.jetbrains.kotlin.plugin.serialization' version '1.3.70'
+    id 'jacoco'
 }
 
 java {
@@ -11,6 +11,17 @@ java {
 
 test {
     useJUnit()
+    finalizedBy jacocoTestReport
+}
+
+jacocoTestReport {
+    dependsOn test
+    reports {
+        xml {
+            enabled true
+            destination file("$buildDir/jacoco/jacoco.xml")
+        }
+    }
 }
 
 // We can split this module in `data` and `domain` (business) but I don't think it's needed for only one endpoint call
