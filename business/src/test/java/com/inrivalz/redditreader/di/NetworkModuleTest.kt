@@ -61,7 +61,7 @@ class NetworkModuleTest : KoinTest {
 
     @Test
     fun `Should return different Retrofit instances`() {
-        val environment = setUpEnvironment()
+        setUpEnvironment()
 
         val retrofit = inject<Retrofit>().value
         val retrofit2 = inject<Retrofit>().value
@@ -109,5 +109,4 @@ class NetworkModuleTest : KoinTest {
             whenever(getApiRedditUrl()).doReturn("http://test.com/")
         }
     }
-
 }

@@ -28,5 +28,4 @@ class EnvironmentModuleTest : KoinTest {
 
         assertThat(serverEnvironment).isEqualTo(serverEnvironment2)
     }
-
 }

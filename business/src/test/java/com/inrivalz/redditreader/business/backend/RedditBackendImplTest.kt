@@ -2,10 +2,10 @@ package com.inrivalz.redditreader.business.backend
 
 import com.inrivalz.redditreader.business.entities.RedditPost
 import com.inrivalz.redditreader.network.api.RedditApi
-import com.inrivalz.redditreader.network.data.JsonRedditPost
+import com.inrivalz.redditreader.network.data.JsonRedditListing
 import com.inrivalz.redditreader.network.data.JsonRedditListingChild
 import com.inrivalz.redditreader.network.data.JsonRedditListingData
-import com.inrivalz.redditreader.network.data.JsonRedditListing
+import com.inrivalz.redditreader.network.data.JsonRedditPost
 import com.nhaarman.mockitokotlin2.doReturn
 import com.nhaarman.mockitokotlin2.mock
 import com.nhaarman.mockitokotlin2.verify
@@ -67,7 +67,6 @@ class RedditBackendImplTest {
         ))
     }
 
-
     private fun aJsonRedditListingChild(suffix: String = ""): JsonRedditListingChild {
         return JsonRedditListingChild(
             JsonRedditPost(
@@ -84,5 +83,4 @@ class RedditBackendImplTest {
     ): JsonRedditListing {
         return JsonRedditListing(JsonRedditListingData(posts, "after"))
     }
-
 }

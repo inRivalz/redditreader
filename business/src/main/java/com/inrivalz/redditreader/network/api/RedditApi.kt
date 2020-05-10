@@ -15,5 +15,4 @@ internal interface RedditApi {
         @Query("after") after: String,
         @Query("limit") limit: Int
     ): Single <JsonRedditListing>
-
 }

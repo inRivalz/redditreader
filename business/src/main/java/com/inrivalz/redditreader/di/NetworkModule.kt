@@ -5,11 +5,11 @@ import com.google.gson.GsonBuilder
 import com.inrivalz.redditreader.network.ServerEnvironment
 import com.inrivalz.redditreader.network.api.RedditApi
 import okhttp3.OkHttpClient
+import okhttp3.logging.HttpLoggingInterceptor
 import org.koin.dsl.module
 import retrofit2.Retrofit
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
 import retrofit2.converter.gson.GsonConverterFactory
-import okhttp3.logging.HttpLoggingInterceptor
 
 val networkModule = module {
     single { provideGson() }

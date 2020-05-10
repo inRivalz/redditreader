@@ -1,7 +1,7 @@
 package com.inrivalz.redditreader.business.backend
 
-import com.inrivalz.redditreader.business.entities.RedditPost
 import com.inrivalz.redditreader.business.backend.map.toRedditPost
+import com.inrivalz.redditreader.business.entities.RedditPost
 import com.inrivalz.redditreader.network.api.RedditApi
 import io.reactivex.Single
 

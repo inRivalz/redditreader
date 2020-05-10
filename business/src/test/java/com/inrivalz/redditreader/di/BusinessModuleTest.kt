@@ -36,5 +36,4 @@ class BusinessModuleTest : KoinTest {
 
         assertThat(redditBackend).isEqualTo(redditBackend2)
     }
-
 }
