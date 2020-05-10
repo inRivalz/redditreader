@@ -4,6 +4,7 @@ import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import androidx.lifecycle.Observer
 import com.inrivalz.redditreader.business.entities.RedditPost
 import com.inrivalz.redditreader.network.NetworkState
+import com.inrivalz.redditreader.ui.ItemSelectedDispatcher
 import com.nhaarman.mockitokotlin2.argWhere
 import com.nhaarman.mockitokotlin2.check
 import com.nhaarman.mockitokotlin2.mock
@@ -18,6 +19,8 @@ class RedditPostListViewModelTest {
     @get:Rule
     val rule = InstantTaskExecutorRule()
 
+    private val itemSelectorDispatcher = mock<ItemSelectedDispatcher<RedditPost>>()
+
     private lateinit var redditPostListViewModel: RedditPostListViewModel
 
     private val listStateObserver = mock<Observer<List<RedditPost>>>()
@@ -25,7 +28,7 @@ class RedditPostListViewModelTest {
 
     @Before
     fun setUp() {
-        redditPostListViewModel = RedditPostListViewModel()
+        redditPostListViewModel = RedditPostListViewModel(itemSelectorDispatcher)
         redditPostListViewModel.listState.observeForever(listStateObserver)
         redditPostListViewModel.networkState.observeForever(networkStateObserver)
     }
@@ -43,5 +46,14 @@ class RedditPostListViewModelTest {
         redditPostListViewModel.refresh()
 
         verify(networkStateObserver).onChanged(argWhere { it is NetworkState.Success })
+    }
+
+    @Test
+    fun `Should delegate call to dispatcher when an item is selected`() {
+        val redditPost = RedditPost(title = "Post Title", author = "Author", created = 0, thumbnail = "thumbnail")
+
+        redditPostListViewModel.onItemSelected(redditPost)
+
+        verify(itemSelectorDispatcher).onItemSelected(redditPost)
     }
 }

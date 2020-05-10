@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fillViewport="true">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/vRedditPostListContainer"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_margin="@dimen/grid_16">
+
+        <TextView
+            android:id="@+id/vSubReddit"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            tools:text="r/Funny"
+            android:textColor="?attr/colorPrimaryDark"
+            style="@style/PostDetail.SubReddit"/>
+
+        <TextView
+            android:id="@+id/vPostAuthor"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/grid_16"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toEndOf="@id/vSubReddit"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:maxLines="1"
+            android:ellipsize="end"
+            tools:text="Posted by u/TestUser 4 hours ago"
+            style="@style/PostDetail.Subtitle" />
+
+        <TextView
+            android:id="@+id/vPostTitle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@id/vSubReddit"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            tools:text="Post title with a long description"
+            style="@style/PostDetail.Title"/>
+
+        <ImageView
+            android:id="@+id/vPostImage"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/grid_16"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/vPostTitle" />
+
+        <TextView
+            android:id="@+id/vPostComments"
+            style="@style/PostDetail.Action"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/grid_8"
+            android:drawableStart="@drawable/ic_reddit_comments"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/vPostImage"
+            tools:text="1.5k Comments" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</ScrollView>

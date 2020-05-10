@@ -8,6 +8,7 @@ import com.inrivalz.redditreader.di.networkModule
 import org.koin.android.ext.koin.androidContext
 import org.koin.android.ext.koin.androidLogger
 import org.koin.core.context.startKoin
+import org.koin.core.logger.Level
 
 class RedditReaderApplication : Application() {
 
@@ -15,7 +16,7 @@ class RedditReaderApplication : Application() {
         super.onCreate()
 
         startKoin {
-            androidLogger()
+            androidLogger(Level.DEBUG)
             androidContext(this@RedditReaderApplication)
             modules(listOf(networkModule, businessModule, environmentModule, appModule))
         }
