@@ -2,7 +2,6 @@ package com.inrivalz.redditreader.ui.list
 
 import android.os.Bundle
 import android.view.View
-import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import com.inrivalz.redditreader.R
@@ -46,7 +45,7 @@ class RedditPostListFragment : Fragment(R.layout.fragment_reddit_post_list) {
     }
 
     private fun onPostSelected(redditPost: RedditPost) {
-        Toast.makeText(requireContext(), redditPost.title, Toast.LENGTH_SHORT).show()
+        viewModel.onItemSelected(redditPost)
     }
 
     companion object {

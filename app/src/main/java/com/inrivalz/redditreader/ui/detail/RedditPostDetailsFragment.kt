@@ -30,8 +30,12 @@ class RedditPostDetailsFragment : Fragment(R.layout.fragment_reddit_post_details
             vPostTitle.text = title
             vPostAuthor.text = author
             // TODO: Thumbnail
-            vPostComments.text = resources.getQuantityText(R.plurals.reddit_post_comments, comments.toInt())
+            vPostComments.text = resources.getQuantityString(R.plurals.reddit_post_comments, comments.toInt(), comments.toInt())
         }
+    }
+
+    companion object {
+        fun newInstance(): Fragment = RedditPostDetailsFragment()
     }
 
 }

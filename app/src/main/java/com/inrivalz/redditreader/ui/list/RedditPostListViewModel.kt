@@ -35,4 +35,8 @@ class RedditPostListViewModel(
     fun refresh() {
         _networkState.value = NetworkState.Success
     }
+
+    fun onItemSelected(post: RedditPost) {
+        itemSelectedDispatcher.onItemSelected(post)
+    }
 }

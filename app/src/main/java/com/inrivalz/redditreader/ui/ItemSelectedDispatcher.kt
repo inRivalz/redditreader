@@ -3,12 +3,16 @@ package com.inrivalz.redditreader.ui
 import io.reactivex.Observable
 import io.reactivex.subjects.BehaviorSubject
 
-class ItemSelectedDispatcher<T> {
+interface ItemSelectedDispatcher<T> {
+    val selectedItemStream: Observable<T>
+    fun onItemSelected(item: T)
+}
 
+class ItemSelectedDispatcherImpl<T> : ItemSelectedDispatcher<T> {
     private val itemBehaviorSubject = BehaviorSubject.create<T>()
-    val selectedItemStream: Observable<T> = itemBehaviorSubject.hide()
+    override val selectedItemStream: Observable<T> = itemBehaviorSubject.hide()
 
-    fun onItemSelected(item: T) {
+    override fun onItemSelected(item: T) {
         itemBehaviorSubject.onNext(item)
     }
 }
