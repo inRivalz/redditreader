@@ -5,5 +5,6 @@ data class RedditPost(
     val author: String,
     val created: Long,
     val thumbnail: String,
+    val comments: Long = 0,
     val read: Boolean = false
 )

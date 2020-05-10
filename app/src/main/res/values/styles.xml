@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="PostItem"/>
+    <style name="PostItem.Title" parent="TextAppearance.AppCompat.Title" />
+    <style name="PostItem.Subtitle">
+        <item name="android:textSize">@dimen/text_size_12</item>
+    </style>
+    <style name="PostItem.Comments">
+        <item name="android:textStyle">bold</item>
+        <item name="android:textSize">@dimen/text_size_12</item>
+        <item name="android:gravity">center_vertical</item>
+        <item name="android:drawableStart">@drawable/ic_reddit_comments</item>
+    </style>
+
+</resources>

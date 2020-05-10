@@ -1,18 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layer-list xmlns:android="http://schemas.android.com/apk/res/android">
-
   <!-- For "ripple" effect -->
   <item android:drawable="?attr/selectableItemBackground"/>
-
-  <!-- Divisor -->
-  <item android:drawable="?attr/dividerHorizontal" android:left="@dimen/grid_16" android:right="@dimen/grid_16"/>
-  <!--
-  <item android:gravity="bottom" android:left="@dimen/grid_16">
-    <shape android:shape="rectangle">
-      <size android:height="1dp" />
-      <solid android:color="?attr/colorDivider"/>
-    </shape>
-  </item>
-  -->
-
 </layer-list>

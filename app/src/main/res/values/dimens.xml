@@ -5,6 +5,8 @@
     <dimen name="grid_16">16dp</dimen>
     <dimen name="grid_32">32dp</dimen>
 
+    <dimen name="text_size_12">12sp</dimen>
+
     <dimen name="reddit_thumbnail_width">64dp</dimen>
     <dimen name="reddit_thumbnail_height">64dp</dimen>
 </resources>

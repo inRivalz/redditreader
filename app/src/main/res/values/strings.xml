@@ -1,3 +1,8 @@
 <resources>
     <string name="app_name">Reddit Reader</string>
+    <string name="reddit_post_subtitle">Posted by u/%1$s, %2$s ago</string>
+    <plurals name="reddit_post_comments">
+        <item quantity="one">%1$d comment</item>
+        <item quantity="other">%1$d comments</item>
+    </plurals>
 </resources>
