@@ -48,12 +48,12 @@ rx.android = "io.reactivex.rxjava2:rxandroid:$versions.rxandroid"
 def koin = [:]
 koin.core = "org.koin:koin-core:$versions.koin"
 koin.android = "org.koin:koin-android:$versions.koin"
-koin.test = "org.koin:koin-test:$versions.koin"
 
 def tests = [:]
 tests.junit = "junit:junit:$versions.junit"
 tests.assertj = "org.assertj:assertj-core:$versions.assertj"
 tests.mockito = "com.nhaarman.mockitokotlin2:mockito-kotlin:$versions.mockito_kotlin"
+tests.koin = "org.koin:koin-test:$versions.koin"
 
 def uitests = [:]
 uitests.espresso_core = "androidx.test.espresso:espresso-core:$versions.espresso"

@@ -1,4 +1,4 @@
-package com.inrivalz.redditreader.di.module
+package com.inrivalz.redditreader.di
 
 import com.inrivalz.redditreader.business.backend.RedditBackend
 import com.inrivalz.redditreader.business.backend.RedditBackendImpl

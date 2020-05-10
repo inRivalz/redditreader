@@ -27,4 +27,5 @@ dependencies {
     testImplementation deps.tests.junit
     testImplementation deps.tests.assertj
     testImplementation deps.tests.mockito
+    testImplementation deps.tests.koin
 }

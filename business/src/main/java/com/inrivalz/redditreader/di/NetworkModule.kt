@@ -1,4 +1,4 @@
-package com.inrivalz.redditreader.di.module
+package com.inrivalz.redditreader.di
 
 import com.google.gson.Gson
 import com.google.gson.GsonBuilder
@@ -12,8 +12,8 @@ import retrofit2.converter.gson.GsonConverterFactory
 import okhttp3.logging.HttpLoggingInterceptor
 
 val networkModule = module {
+    single { provideGson() }
     factory { provideOkHttpClient() }
-    factory { provideGson() }
     factory { provideRetrofit(get(), get(), get()) }
     single { provideRedditApi(get()) }
 }
@@ -36,5 +36,3 @@ internal fun provideOkHttpClient(): OkHttpClient {
 internal fun provideGson(): Gson = GsonBuilder().create()
 
 internal fun provideRedditApi(retrofit: Retrofit): RedditApi = retrofit.create(RedditApi::class.java)
-
-const val SERVER_URL_KEY = "server_url"

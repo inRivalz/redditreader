@@ -54,6 +54,9 @@ dependencies {
     implementation deps.rx.android
 
     testImplementation deps.tests.junit
+    testImplementation deps.tests.assertj
+    testImplementation deps.tests.mockito
+    testImplementation deps.tests.koin
 
     androidTestImplementation deps.uitests.espresso_core
     androidTestImplementation deps.uitests.junit_ext
