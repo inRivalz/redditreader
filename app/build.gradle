@@ -2,10 +2,14 @@ plugins {
     id 'com.android.application'
     id 'kotlin-android'
     id 'kotlin-android-extensions'
+    id 'com.hiya.jacoco-android'
 }
-apply plugin: "com.hiya.jacoco-android"
 apply from: "$rootDir/quality.gradle"
 apply from: "$rootDir/servers.gradle"
+
+androidExtensions {
+    experimental = true
+}
 
 android {
     compileSdkVersion 29
@@ -49,11 +53,14 @@ jacocoAndroidUnitTestReport {
 dependencies {
     implementation project(":business")
     implementation deps.kotlin.stdlib
+    implementation deps.material.material
     implementation deps.androidx.core_ktx
     implementation deps.androidx.appcompat
-    implementation deps.material.material
     implementation deps.androidx.constraint_layout
+    implementation deps.androidx.recyclerview
+    implementation deps.androidx.swiperefreshlayout
     implementation deps.koin.android
+    implementation deps.koin.viewmodel
     implementation deps.rx.rxjava
     implementation deps.rx.kotlin
     implementation deps.rx.android
@@ -62,6 +69,7 @@ dependencies {
     testImplementation deps.tests.assertj
     testImplementation deps.tests.mockito
     testImplementation deps.tests.koin
+    testImplementation deps.tests.arch_core
 
     androidTestImplementation deps.uitests.espresso_core
     androidTestImplementation deps.uitests.junit_ext
