@@ -49,11 +49,14 @@ jacocoAndroidUnitTestReport {
 dependencies {
     implementation project(":business")
     implementation deps.kotlin.stdlib
+    implementation deps.material.material
     implementation deps.androidx.core_ktx
     implementation deps.androidx.appcompat
-    implementation deps.material.material
     implementation deps.androidx.constraint_layout
+    implementation deps.androidx.recyclerview
+    implementation deps.androidx.swiperefreshlayout
     implementation deps.koin.android
+    implementation deps.koin.viewmodel
     implementation deps.rx.rxjava
     implementation deps.rx.kotlin
     implementation deps.rx.android
