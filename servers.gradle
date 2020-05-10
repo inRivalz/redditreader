@@ -1,0 +1,9 @@
+def production = [:]
+production.api_reddit = '"https://www.reddit.com/"'
+
+// We can add different urls for other application flavors and environments, for now we only have "production", the final one.
+def endpoints = [:]
+endpoints.production = production
+endpoints.API_REDDIT = "API_REDDIT"
+
+ext.endpoints = endpoints

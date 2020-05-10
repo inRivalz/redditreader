@@ -3,7 +3,9 @@ plugins {
     id 'kotlin-android'
     id 'kotlin-android-extensions'
 }
-apply from: "${rootDir}/jacoco.gradle"
+apply plugin: "com.hiya.jacoco-android"
+apply from: "$rootDir/quality.gradle"
+apply from: "$rootDir/servers.gradle"
 
 android {
     compileSdkVersion 29
@@ -25,6 +27,12 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
+
+    applicationVariants.all { variant ->
+        def environment = endpoints.production
+        variant.buildConfigField 'String', endpoints.API_REDDIT, environment.api_reddit
+    }
+
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
@@ -34,15 +42,26 @@ android {
     }
 }
 
-dependencies {
+jacocoAndroidUnitTestReport {
+    excludes += jacocoExceptions
+}
 
+dependencies {
+    implementation project(":business")
     implementation deps.kotlin.stdlib
     implementation deps.androidx.core_ktx
     implementation deps.androidx.appcompat
     implementation deps.material.material
     implementation deps.androidx.constraint_layout
+    implementation deps.koin.android
+    implementation deps.rx.rxjava
+    implementation deps.rx.kotlin
+    implementation deps.rx.android
 
     testImplementation deps.tests.junit
+    testImplementation deps.tests.assertj
+    testImplementation deps.tests.mockito
+    testImplementation deps.tests.koin
 
     androidTestImplementation deps.uitests.espresso_core
     androidTestImplementation deps.uitests.junit_ext

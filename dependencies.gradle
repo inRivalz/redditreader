@@ -3,12 +3,25 @@ versions.core_ktx = "1.2.0"
 versions.appcompat = "1.1.0"
 versions.material = "1.1.0"
 versions.constraint_layout = "1.1.3"
+versions.kotlinx_serialization_converter = "0.5.0"
+versions.retrofit = "2.8.1"
+versions.gson = "2.8.6"
+versions.okhttp_logging = "3.9.0"
+versions.rxjava = "2.2.12"
+versions.rxkotlin = "2.4.0"
+versions.rxandroid = "2.1.1"
+versions.koin = "2.1.5"
 versions.junit = "4.12"
 versions.junit_ext = "1.1.1"
+versions.assertj = "3.16.0"
+versions.mockito_kotlin = "2.2.0"
 versions.espresso = "3.2.0"
 
 def kotlin = [:]
 kotlin.stdlib = "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
+
+def kotlinx = [:]
+kotlinx.serialization_runtime = "org.jetbrains.kotlinx:kotlinx-serialization-runtime:$versions.kotlinx_serialization"
 
 def androidx = [:]
 androidx.core_ktx = "androidx.core:core-ktx:$versions.core_ktx"
@@ -18,8 +31,29 @@ androidx.constraint_layout = "androidx.constraintlayout:constraintlayout:$versio
 def material = [:]
 material.material = "com.google.android.material:material:$versions.material"
 
+def retrofit = [:]
+retrofit.runtime = "com.squareup.retrofit2:retrofit:$versions.retrofit"
+retrofit.adapter_rxjava = "com.squareup.retrofit2:adapter-rxjava2:$versions.retrofit"
+retrofit.gson_converter = "com.squareup.retrofit2:converter-gson:$versions.retrofit"
+retrofit.okhttp_logging_interceptor = "com.squareup.okhttp3:logging-interceptor:$versions.okhttp_logging"
+
+def gson = [:]
+gson.runtime = "com.google.code.gson:gson:$versions.gson"
+
+def rx = [:]
+rx.rxjava = "io.reactivex.rxjava2:rxjava:$versions.rxjava"
+rx.kotlin = "io.reactivex.rxjava2:rxkotlin:$versions.rxkotlin"
+rx.android = "io.reactivex.rxjava2:rxandroid:$versions.rxandroid"
+
+def koin = [:]
+koin.core = "org.koin:koin-core:$versions.koin"
+koin.android = "org.koin:koin-android:$versions.koin"
+
 def tests = [:]
 tests.junit = "junit:junit:$versions.junit"
+tests.assertj = "org.assertj:assertj-core:$versions.assertj"
+tests.mockito = "com.nhaarman.mockitokotlin2:mockito-kotlin:$versions.mockito_kotlin"
+tests.koin = "org.koin:koin-test:$versions.koin"
 
 def uitests = [:]
 uitests.espresso_core = "androidx.test.espresso:espresso-core:$versions.espresso"
@@ -29,5 +63,9 @@ ext.deps = [:]
 ext.deps.kotlin = kotlin
 ext.deps.androidx = androidx
 ext.deps.material = material
+ext.deps.retrofit = retrofit
+ext.deps.gson = gson
+ext.deps.rx = rx
+ext.deps.koin = koin
 ext.deps.tests = tests
 ext.deps.uitests = uitests

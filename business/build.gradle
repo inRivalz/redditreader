@@ -1,0 +1,42 @@
+plugins {
+    id 'java-library'
+    id 'kotlin'
+    id 'jacoco'
+}
+
+java {
+    sourceCompatibility = JavaVersion.VERSION_1_7
+    targetCompatibility = JavaVersion.VERSION_1_7
+}
+
+test {
+    useJUnit()
+    finalizedBy jacocoTestReport
+}
+
+jacocoTestReport {
+    dependsOn test
+    reports {
+        xml {
+            enabled true
+            destination file("$buildDir/jacoco/jacoco.xml")
+        }
+    }
+}
+
+// We can split this module in `data` and `domain` (business) but I don't think it's needed for only one endpoint call
+dependencies {
+    implementation deps.kotlin.stdlib
+    implementation deps.koin.core
+    implementation deps.rx.rxjava
+    implementation deps.gson.runtime
+    implementation deps.retrofit.runtime
+    implementation deps.retrofit.gson_converter
+    implementation deps.retrofit.adapter_rxjava
+    implementation deps.retrofit.okhttp_logging_interceptor
+
+    testImplementation deps.tests.junit
+    testImplementation deps.tests.assertj
+    testImplementation deps.tests.mockito
+    testImplementation deps.tests.koin
+}
