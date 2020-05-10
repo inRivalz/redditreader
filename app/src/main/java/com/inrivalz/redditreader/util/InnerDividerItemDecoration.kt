@@ -10,7 +10,6 @@ import com.inrivalz.redditreader.util.InnerDividerItemDecoration.Companion.HORIZ
 import com.inrivalz.redditreader.util.InnerDividerItemDecoration.Companion.VERTICAL
 import kotlin.math.roundToInt
 
-
 /**
  * Port of the [androidx.recyclerview.widget.DividerItemDecoration] that allows for skipping the devider after the last item in the list.
  *

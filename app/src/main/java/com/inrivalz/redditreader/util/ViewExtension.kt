@@ -6,6 +6,6 @@ import android.view.ViewGroup
 import androidx.annotation.LayoutRes
 
 inline fun <reified T : View> ViewGroup.inflate(
-        @LayoutRes layoutRes: Int,
-        attachToRoot: Boolean = true
+    @LayoutRes layoutRes: Int,
+    attachToRoot: Boolean = true
 ): T = LayoutInflater.from(context).inflate(layoutRes, this, attachToRoot) as T

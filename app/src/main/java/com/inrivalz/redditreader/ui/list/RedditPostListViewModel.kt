@@ -32,5 +32,4 @@ class RedditPostListViewModel : ViewModel() {
     fun refresh() {
         _networkState.value = NetworkState.Success
     }
-
 }
