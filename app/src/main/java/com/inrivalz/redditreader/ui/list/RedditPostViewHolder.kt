@@ -19,7 +19,7 @@ class RedditPostViewHolder private constructor(
         // TODO: Thumbnail
         vTitle.text = post.title
         vSubtitle.text = containerView.resources.getString(R.string.reddit_post_subtitle, post.author, post.created.toString())
-        vComments.text = containerView.resources.getQuantityString(R.plurals.reddit_post_comments, post.comments.toInt(), post.comments)
+        vPostComments.text = containerView.resources.getQuantityString(R.plurals.reddit_post_comments, post.comments.toInt(), post.comments)
     }
 
     companion object {

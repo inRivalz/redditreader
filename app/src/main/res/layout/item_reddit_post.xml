@@ -42,12 +42,13 @@
         style="@style/PostItem.Subtitle"/>
 
     <TextView
-        android:id="@+id/vComments"
+        android:id="@+id/vPostComments"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:drawableStart="@drawable/ic_reddit_comments"
         app:layout_constraintTop_toBottomOf="@id/vSubtitle"
         app:layout_constraintStart_toStartOf="@id/vSubtitle"
         tools:text="1.5k Comments"
-        style="@style/PostItem.Comments"/>
+        style="@style/PostItem.Action"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

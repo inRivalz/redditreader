@@ -5,8 +5,11 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.inrivalz.redditreader.business.entities.RedditPost
 import com.inrivalz.redditreader.network.NetworkState
+import com.inrivalz.redditreader.ui.ItemSelectedDispatcher
 
-class RedditPostListViewModel : ViewModel() {
+class RedditPostListViewModel(
+    private val itemSelectedDispatcher: ItemSelectedDispatcher<RedditPost>
+) : ViewModel() {
 
     private var _listState = MutableLiveData<List<RedditPost>>()
     val listState: LiveData<List<RedditPost>> = _listState
