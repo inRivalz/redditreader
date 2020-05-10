@@ -4,4 +4,17 @@
     <color name="orange100">#FF5700</color>
     <color name="orange80">#FF9042</color>
     <color name="teal200">#03DAC5</color>
+
+    <!-- Text and dividers -->
+    <color name="black100">#111111</color>
+    <color name="black75">#BF111111</color>
+    <color name="black50">#7F111111</color>
+    <color name="black25">#56111111</color>
+    <color name="black10">#19111111</color>
+
+    <color name="white100">#FFFFFF</color>
+    <color name="white75">#BFFFFFFF</color>
+    <color name="white50">#7FFFFFFF</color>
+    <color name="white25">#56FFFFFF</color>
+    <color name="white10">#19FFFFFF</color>
 </resources>

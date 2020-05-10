@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:padding="@dimen/grid_16"
+    android:background="@drawable/bg_list_item">
+
+    <ImageView
+        android:id="@+id/vThumbnail"
+        android:layout_width="@dimen/reddit_thumbnail_width"
+        android:layout_height="@dimen/reddit_thumbnail_height"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:src="@drawable/ic_launcher_foreground"
+        tools:tint="#000000" />
+
+    <TextView
+        android:id="@+id/vTitle"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/grid_16"
+        android:textAppearance="@style/TextAppearance.AppCompat.Title"
+        android:maxLines="2"
+        android:ellipsize="end"
+        app:layout_constraintStart_toEndOf="@id/vThumbnail"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        tools:text="Long post title with a lot of information about the post" />
+
+    <TextView
+        android:id="@+id/vSubtitle"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/vTitle"
+        app:layout_constraintStart_toStartOf="@id/vTitle"
+        app:layout_constraintEnd_toEndOf="@id/vTitle"
+        tools:text="Posted by u/testuser 6 hours ago" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:drawableStart="@drawable/ic_reddit_comments"
+        android:textAppearance="@style/TextAppearance.AppCompat.Caption"
+        app:layout_constraintTop_toBottomOf="@id/vSubtitle"
+        app:layout_constraintStart_toStartOf="@id/vSubtitle"
+        tools:text="1.5k Comments" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

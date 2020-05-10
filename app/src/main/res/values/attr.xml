@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Theme Attributes -->
+    <declare-styleable name="ThemeAttributes">
+        <attr name="colorDivider" format="reference"/>
+    </declare-styleable>
+</resources>
