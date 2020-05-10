@@ -5,7 +5,7 @@ import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.disposables.Disposable
 import io.reactivex.rxkotlin.plusAssign
 
-open class BaseViewModel() : ViewModel() {
+open class BaseViewModel : ViewModel() {
     private val disposables by lazy { CompositeDisposable() }
 
     protected fun Disposable.autoClear(): Disposable {
