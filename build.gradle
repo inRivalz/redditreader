@@ -46,7 +46,7 @@ sonarqube {
         property "sonar.host.url", "https://sonarcloud.io"
         property "sonar.pullrequest.provider", "GitHub"
         property "sonar.pullrequest.github.repository", "${System.env.GITHUB_REPOSITORY}"
-        if (System.getenv("GITHUB_REF") != null) {
+        if (!System.getenv("GITHUB_BASE_REF").isEmpty()) {
             property "sonar.pullrequest.base", "${System.env.GITHUB_BASE_REF}"
             property "sonar.pullrequest.branch", "${System.env.GITHUB_HEAD_REF}"
             property "sonar.pullrequest.key", getPullRequestID()
