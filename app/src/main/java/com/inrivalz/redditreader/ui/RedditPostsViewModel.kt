@@ -22,7 +22,7 @@ class RedditPostsViewModel(
     init {
         selectedItemStream.subscribeBy(
             onNext = { onItemSelected() },
-            onError = { logger.error(this, exception = it) }
+            onError = { logger.error(this@RedditPostsViewModel, exception = it) }
         ).autoClear()
     }
 
