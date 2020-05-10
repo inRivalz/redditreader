@@ -3,7 +3,8 @@ plugins {
     id 'kotlin-android'
     id 'kotlin-android-extensions'
 }
-apply from: "${rootDir}/jacoco.gradle"
+apply from: "$rootDir/jacoco.gradle"
+apply from: "$rootDir/servers.gradle"
 
 android {
     compileSdkVersion 29
@@ -25,6 +26,12 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
+
+    applicationVariants.all { variant ->
+        def environment = endpoints.production
+        variant.buildConfigField 'String', endpoints.API_REDDIT, environment.api_reddit
+    }
+
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8

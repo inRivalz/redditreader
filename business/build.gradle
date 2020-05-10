@@ -13,6 +13,7 @@ test {
     useJUnit()
 }
 
+// We can split this module in `data` and `domain` (business) but I don't think it's needed for only one endpoint call
 dependencies {
     implementation deps.kotlin.stdlib
     implementation deps.koin.core

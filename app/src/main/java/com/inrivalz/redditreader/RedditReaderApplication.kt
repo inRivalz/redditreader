@@ -1,6 +1,7 @@
 package com.inrivalz.redditreader
 
 import android.app.Application
+import com.inrivalz.redditreader.di.environmentModule
 import com.inrivalz.redditreader.di.module.businessModule
 import com.inrivalz.redditreader.di.module.networkModule
 import org.koin.android.ext.koin.androidContext
@@ -15,7 +16,7 @@ class RedditReaderApplication : Application() {
         startKoin {
             androidLogger()
             androidContext(this@RedditReaderApplication)
-            modules(listOf(networkModule, businessModule))
+            modules(listOf(networkModule, businessModule, environmentModule))
         }
     }
 }
