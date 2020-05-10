@@ -37,5 +37,4 @@ class RedditPostDetailsFragment : Fragment(R.layout.fragment_reddit_post_details
     companion object {
         fun newInstance(): Fragment = RedditPostDetailsFragment()
     }
-
 }

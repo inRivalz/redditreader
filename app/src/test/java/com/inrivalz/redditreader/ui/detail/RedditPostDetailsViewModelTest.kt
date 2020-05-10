@@ -5,7 +5,13 @@ import androidx.lifecycle.Observer
 import com.inrivalz.redditreader.business.entities.RedditPost
 import com.inrivalz.redditreader.ui.ItemSelectedDispatcher
 import com.inrivalz.redditreader.util.Logger
-import com.nhaarman.mockitokotlin2.*
+import com.nhaarman.mockitokotlin2.any
+import com.nhaarman.mockitokotlin2.check
+import com.nhaarman.mockitokotlin2.doReturn
+import com.nhaarman.mockitokotlin2.mock
+import com.nhaarman.mockitokotlin2.never
+import com.nhaarman.mockitokotlin2.verify
+import com.nhaarman.mockitokotlin2.whenever
 import io.reactivex.Observable
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.Rule
@@ -61,6 +67,5 @@ class RedditPostDetailsViewModelTest {
     private fun viewModelIsInitialized() {
         redditPostDetailsViewModel = RedditPostDetailsViewModel(itemSelectedDispatcher, logger)
         redditPostDetailsViewModel.postState.observeForever(postStateObserver)
-
     }
 }

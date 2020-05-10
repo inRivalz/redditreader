@@ -5,7 +5,13 @@ import androidx.lifecycle.Observer
 import com.inrivalz.redditreader.aRedditPost
 import com.inrivalz.redditreader.business.entities.RedditPost
 import com.inrivalz.redditreader.util.Logger
-import com.nhaarman.mockitokotlin2.*
+import com.nhaarman.mockitokotlin2.argWhere
+import com.nhaarman.mockitokotlin2.doReturn
+import com.nhaarman.mockitokotlin2.eq
+import com.nhaarman.mockitokotlin2.inOrder
+import com.nhaarman.mockitokotlin2.mock
+import com.nhaarman.mockitokotlin2.never
+import com.nhaarman.mockitokotlin2.verify
 import io.reactivex.Observable
 import org.junit.Rule
 import org.junit.Test

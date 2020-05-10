@@ -45,7 +45,7 @@ class RedditPostsActivity : AppCompatActivity(R.layout.activity_main) {
 
     private fun observeUiState() {
         viewModel.uiState.nonNullObserve(this) { state ->
-            when(state) {
+            when (state) {
                 RedditPostsViewModel.UiState.ShowMaster -> {
                     vMasterDetailPager.currentItem = MasterDetailFragmentAdapter.MASTER_POSITION
                 }
