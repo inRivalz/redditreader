@@ -1,9 +1,12 @@
 package com.inrivalz.redditreader.business.entities
 
+import android.os.Parcelable
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 import com.google.gson.annotations.SerializedName
+import kotlinx.android.parcel.Parcelize
 
+@Parcelize
 @Entity(tableName = "posts")
 data class RedditPost(
     @PrimaryKey
@@ -25,4 +28,4 @@ data class RedditPost(
     val read: Boolean,
     @SerializedName("position")
     val position: Int = 0
-)
+) : Parcelable

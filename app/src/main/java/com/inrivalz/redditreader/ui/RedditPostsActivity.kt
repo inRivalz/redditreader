@@ -10,11 +10,11 @@ import com.inrivalz.redditreader.util.exhaustive
 import com.inrivalz.redditreader.util.nonNullObserve
 import kotlinx.android.synthetic.main.activity_main.*
 import org.koin.android.scope.lifecycleScope
-import org.koin.android.viewmodel.scope.viewModel
+import org.koin.androidx.viewmodel.scope.stateViewModel
 
 class RedditPostsActivity : AppCompatActivity(R.layout.activity_main) {
 
-    private val viewModel: RedditPostsViewModel by lifecycleScope.viewModel(this)
+    private val viewModel: RedditPostsViewModel by lifecycleScope.stateViewModel(this)
 
     private val fragmentPagerAdapter: MasterDetailFragmentAdapter by lazy {
         MasterDetailFragmentAdapter(
