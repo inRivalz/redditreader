@@ -13,10 +13,10 @@
         android:id="@+id/vThumbnail"
         android:layout_width="@dimen/reddit_thumbnail_width"
         android:layout_height="@dimen/reddit_thumbnail_height"
-        android:src="@drawable/ic_launcher_foreground"
-        android:tint="?attr/colorDivider"
+        android:src="@drawable/ic_image_placeholder"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"/>
 
     <TextView
         android:id="@+id/vTitle"

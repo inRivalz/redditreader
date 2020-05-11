@@ -15,6 +15,7 @@ versions.rxandroid = "2.1.1"
 versions.koin = "2.1.5"
 versions.androidx_paging = "2.1.2"
 versions.room = "2.2.5"
+versions.glide = "4.11.0"
 versions.junit = "4.12"
 versions.junit_ext = "1.1.1"
 versions.assertj = "3.16.0"
@@ -60,6 +61,10 @@ koin.core = "org.koin:koin-core:$versions.koin"
 koin.android = "org.koin:koin-android:$versions.koin"
 koin.viewmodel = "org.koin:koin-android-viewmodel:$versions.koin"
 
+def glide = [:]
+glide.runtime = "com.github.bumptech.glide:glide:$versions.glide"
+glide.compiler = "com.github.bumptech.glide:compiler:$versions.glide"
+
 def tests = [:]
 tests.junit = "junit:junit:$versions.junit"
 tests.assertj = "org.assertj:assertj-core:$versions.assertj"
@@ -79,6 +84,7 @@ ext.deps.retrofit = retrofit
 ext.deps.gson = gson
 ext.deps.rx = rx
 ext.deps.koin = koin
+ext.deps.glide = glide
 ext.deps.room = room
 ext.deps.tests = tests
 ext.deps.uitests = uitests

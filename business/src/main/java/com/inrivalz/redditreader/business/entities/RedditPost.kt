@@ -18,7 +18,7 @@ data class RedditPost(
     @SerializedName("thumbnail")
     val thumbnail: String,
     @SerializedName("comments")
-    val comments: Long = 0,
+    val comments: Int = 0,
     @SerializedName("read")
     val read: Boolean = false,
     @SerializedName("position")

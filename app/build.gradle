@@ -65,6 +65,9 @@ dependencies {
     implementation deps.rx.rxjava
     implementation deps.rx.kotlin
     implementation deps.rx.android
+    implementation deps.glide.runtime
+
+    annotationProcessor deps.glide.compiler
 
     testImplementation deps.tests.junit
     testImplementation deps.tests.assertj

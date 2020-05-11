@@ -9,4 +9,5 @@
 
     <dimen name="reddit_thumbnail_width">64dp</dimen>
     <dimen name="reddit_thumbnail_height">64dp</dimen>
+    <dimen name="reddit_thumbnail_corner">4dp</dimen>
 </resources>

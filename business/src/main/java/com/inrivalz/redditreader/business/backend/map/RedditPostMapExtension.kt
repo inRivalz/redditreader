@@ -9,6 +9,7 @@ internal fun JsonRedditPost.toRedditPost(): RedditPost {
         title = title,
         author = author,
         created = created,
-        thumbnail = thumbnail
+        thumbnail = thumbnail,
+        comments = comments
     )
 }
