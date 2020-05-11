@@ -16,5 +16,6 @@ ext.jacocoExceptions = [
         '**/ViewExtension.*',
         '**/AppModule.*',
         '**/Logger*',
-        '**/PagingRequestHelper.*'
+        '**/PagingRequestHelper.*',
+        '**/SwipeToDeleteCallback.*'
 ]
