@@ -14,6 +14,8 @@ The application uses a `Master-Detail` architecture with `MVVM` and repositories
 #### TODO
 There are some improvements I want to add to this, like a loader item for the recyclerview (that shouldn't be able to swipe to dismiss), more unit tests, specially when calling the paging libraries and UI test. For the last one I need to find a way to run emulators inside github actions, I'm investigating what are the best options.
 
+Other improvements are splitting the business module in a "data" one and add abstractions for Room to be able to make it a plain kotlin module.
+
 ### Video
 ![add-image-support-and-improve-design](https://user-images.githubusercontent.com/4906698/81562365-1917df00-936b-11ea-8891-3d872b7ab37d.gif)
 
