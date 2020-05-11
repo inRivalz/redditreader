@@ -102,7 +102,7 @@ class RedditPostListViewModelTest {
         whenever(redditPostsRepository.refreshPosts()).doReturn(Completable.never())
 
         redditPostListViewModel.refresh()
-        
+
         verify(refreshNetworkState).onChanged(argWhere { it == NetworkState.Loading })
     }
 
@@ -119,7 +119,6 @@ class RedditPostListViewModelTest {
             verify().onChanged(argWhere { it == NetworkState.Success })
         }
     }
-
 
     @Test
     fun `Should emit error state when triggering refresh and there is network error`() {

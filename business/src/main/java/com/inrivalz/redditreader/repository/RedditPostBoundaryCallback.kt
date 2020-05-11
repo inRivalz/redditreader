@@ -33,15 +33,15 @@ internal class RedditPostBoundaryCallback(
 
     override fun onZeroItemsLoaded() {
         pagingRequestHelper.runIfNotRunning(PagingRequestHelper.RequestType.INITIAL) { callback ->
-           redditBackend.getTop(pageSize)
-               .subscribeOn(Schedulers.io())
-               .subscribeBy(
-                   onSuccess = {
-                       onPostFetched(it)
-                       callback.recordSuccess()
-                   },
-                   onError = { callback.recordFailure(it) }
-               )
+            redditBackend.getTop(pageSize)
+                .subscribeOn(Schedulers.io())
+                .subscribeBy(
+                    onSuccess = {
+                        onPostFetched(it)
+                        callback.recordSuccess()
+                    },
+                    onError = { callback.recordFailure(it) }
+                )
         }
     }
 

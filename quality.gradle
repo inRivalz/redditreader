@@ -4,6 +4,7 @@ ext.jacocoExceptions = [
         '**/BuildConfig.*',
         '**/Manifest*.*',
         '**/*Test*.*',
+        '**/*Rule.*',
         'android/**/*.*',
         // I'll exclude android classes for now, the CI is not running UI tests and it'll fail PRs due to coverage.
         '**/*Activity.*',
@@ -15,5 +16,5 @@ ext.jacocoExceptions = [
         '**/ViewExtension.*',
         '**/AppModule.*',
         '**/Logger*',
-        '**/PagingRequestHelper*'
+        '**/PagingRequestHelper.*'
 ]

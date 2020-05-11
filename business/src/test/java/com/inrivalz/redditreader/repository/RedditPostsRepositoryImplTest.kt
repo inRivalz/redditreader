@@ -15,10 +15,10 @@ import com.nhaarman.mockitokotlin2.verify
 import com.nhaarman.mockitokotlin2.whenever
 import io.reactivex.Observable
 import io.reactivex.Single
+import java.util.concurrent.Executor
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.Before
 import org.junit.Test
-import java.util.concurrent.Executor
 
 class RedditPostsRepositoryImplTest {
 
@@ -31,7 +31,7 @@ class RedditPostsRepositoryImplTest {
         }
     }
 
-    private lateinit var redditPostsRepository: RedditPostsRepositoryImpl
+    private lateinit var redditPostsRepository: RedditPostsRepository
 
     @Before
     fun setUp() {
@@ -84,6 +84,4 @@ class RedditPostsRepositoryImplTest {
         verify(redditPostsDao).cleanAnInsert(posts)
         testObserver.assertComplete()
     }
-
-
 }

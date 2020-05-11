@@ -5,6 +5,7 @@ plugins {
     id 'kotlin-kapt'
     id 'com.hiya.jacoco-android'
 }
+apply from: "$rootDir/quality.gradle"
 
 android {
     compileSdkVersion 29
@@ -33,6 +34,10 @@ android {
     kotlinOptions {
         jvmTarget = '1.8'
     }
+}
+
+jacocoAndroidUnitTestReport {
+    excludes += jacocoExceptions
 }
 
 dependencies {

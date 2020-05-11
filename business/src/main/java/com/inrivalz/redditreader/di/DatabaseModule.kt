@@ -7,9 +7,9 @@ import com.inrivalz.redditreader.db.RedditPostsDao
 import com.inrivalz.redditreader.repository.RedditPostBoundaryCallbackFactory
 import com.inrivalz.redditreader.repository.RedditPostsRepository
 import com.inrivalz.redditreader.repository.RedditPostsRepositoryImpl
-import org.koin.dsl.module
 import java.util.concurrent.Executor
 import java.util.concurrent.Executors
+import org.koin.dsl.module
 
 val databaseModule = module {
     factory { Executors.newSingleThreadExecutor() as Executor }

@@ -39,7 +39,6 @@ internal class RedditPostsRepositoryImpl(
             }.toCompletable()
     }
 
-
     private fun insertPostsIntoDb(posts: List<RedditPost>) {
         ioExecutor.execute {
             redditPostsDao.insertSorted(posts)

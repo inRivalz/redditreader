@@ -13,5 +13,3 @@ internal abstract class RedditDatabase : RoomDatabase() {
         const val DATABASE_NAME = "reddit-database"
     }
 }
-
-
