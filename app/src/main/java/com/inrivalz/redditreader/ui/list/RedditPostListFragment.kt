@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.View
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
+import androidx.recyclerview.widget.ItemTouchHelper
 import com.inrivalz.redditreader.R
 import com.inrivalz.redditreader.business.entities.RedditPost
 import com.inrivalz.redditreader.network.NetworkState
@@ -26,6 +27,8 @@ class RedditPostListFragment : Fragment(R.layout.fragment_reddit_post_list) {
 
     private fun initRecyclerView() {
         vPostRecycler.adapter = adapter
+        val helper = ItemTouchHelper(SwipeToDeleteCallback(requireContext(), ::onItemDeleted))
+        helper.attachToRecyclerView(vPostRecycler)
         requireContext().getDrawable(R.drawable.item_separator)?.let { divider ->
             vPostRecycler.addItemDecoration(InnerDividerItemDecoration(VERTICAL, divider))
         }
@@ -46,6 +49,10 @@ class RedditPostListFragment : Fragment(R.layout.fragment_reddit_post_list) {
 
     private fun onPostSelected(redditPost: RedditPost) {
         viewModel.onItemSelected(redditPost)
+    }
+
+    private fun onItemDeleted(position: Int) {
+        viewModel.onItemDeleted(position)
     }
 
     companion object {

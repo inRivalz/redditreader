@@ -22,6 +22,9 @@ internal abstract class RedditPostsDao {
     @Query("DELETE FROM posts WHERE read = 0")
     abstract fun deleteUnreadPosts()
 
+    @Query("UPDATE posts SET read = 1 WHERE name = :postName")
+    abstract fun markPostAsRead(postName: String)
+
     @Transaction
     open fun cleanAnInsert(redditPosts: List<RedditPost>) {
         deleteUnreadPosts()

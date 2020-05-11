@@ -71,6 +71,10 @@ class RedditPostListViewModel(
         itemSelectedDispatcher.onItemSelected(post)
     }
 
+    fun onItemDeleted(position: Int) {
+        listState.value?.getOrNull(position)?.let { redditPostsRepository.markPostAsRead(it) }
+    }
+
     companion object {
         const val PAGE_SIZE = 20
     }

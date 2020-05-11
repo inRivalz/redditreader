@@ -1,10 +1,15 @@
 package com.inrivalz.redditreader.ui.detail
 
+import android.graphics.Canvas
+import android.graphics.drawable.ColorDrawable
+import android.graphics.drawable.Drawable
 import android.os.Bundle
 import android.view.View
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
+import androidx.recyclerview.widget.ItemTouchHelper
+import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.inrivalz.redditreader.R
 import com.inrivalz.redditreader.business.entities.RedditPost

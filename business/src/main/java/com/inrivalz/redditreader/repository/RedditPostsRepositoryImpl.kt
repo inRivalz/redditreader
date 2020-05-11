@@ -39,6 +39,10 @@ internal class RedditPostsRepositoryImpl(
             }.toCompletable()
     }
 
+    override fun markPostAsRead(post: RedditPost) {
+        ioExecutor.execute { redditPostsDao.markPostAsRead(post.name) }
+    }
+
     private fun insertPostsIntoDb(posts: List<RedditPost>) {
         ioExecutor.execute {
             redditPostsDao.insertSorted(posts)
