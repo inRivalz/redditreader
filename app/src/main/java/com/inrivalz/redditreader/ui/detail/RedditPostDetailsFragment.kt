@@ -9,6 +9,8 @@ import com.bumptech.glide.Glide
 import com.inrivalz.redditreader.R
 import com.inrivalz.redditreader.business.entities.RedditPost
 import com.inrivalz.redditreader.util.lifecycleViewModel
+import com.inrivalz.redditreader.util.toPrettyDate
+import com.inrivalz.redditreader.util.toThousandString
 import kotlinx.android.synthetic.main.fragment_reddit_post_details.*
 
 class RedditPostDetailsFragment : Fragment(R.layout.fragment_reddit_post_details) {
@@ -29,9 +31,14 @@ class RedditPostDetailsFragment : Fragment(R.layout.fragment_reddit_post_details
     private fun populatePost(post: RedditPost) {
         with(post) {
             vSubReddit.text = getString(R.string.reddit_details_subreddit_template, subredit)
-            vPostAuthor.text = getString(R.string.reddit_details_user_template, author)
+            vPostAuthor.text =
+                getString(R.string.reddit_details_user_template, author, created.toPrettyDate())
             vPostTitle.text = title
-            vPostComments.text = resources.getQuantityString(R.plurals.reddit_post_comments, comments.toInt(), comments.toInt())
+            vPostComments.text = resources.getQuantityString(
+                R.plurals.reddit_post_comments,
+                comments,
+                comments.toThousandString()
+            )
             loadThumbnail(thumbnail)
         }
     }
@@ -40,9 +47,9 @@ class RedditPostDetailsFragment : Fragment(R.layout.fragment_reddit_post_details
         vPostImage.isVisible = thumbnail != null
         thumbnail?.let {
             Glide.with(this).load(it)
-            .fitCenter()
-            .placeholder(R.drawable.ic_image_placeholder)
-            .into(vPostImage)
+                .fitCenter()
+                .placeholder(R.drawable.ic_image_placeholder)
+                .into(vPostImage)
         }
     }
 

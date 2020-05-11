@@ -66,6 +66,7 @@ dependencies {
     implementation deps.rx.kotlin
     implementation deps.rx.android
     implementation deps.glide.runtime
+    implementation deps.prettytime.runtime
 
     annotationProcessor deps.glide.compiler
 
