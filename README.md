@@ -16,6 +16,8 @@ There are some improvements I want to add to this, like a loader item for the re
 
 Other improvements are splitting the business module in a "data" one and add abstractions for Room to be able to make it a plain kotlin module.
 
+I would also like to add more support for reddit and more interactions inside the app. At least add suppor to load the full size media from the response, now it is not enabled because we can receive different objects as media and I need to check the full list to be able to support them without crashing.
+
 ### Video
 ![add-image-support-and-improve-design](https://user-images.githubusercontent.com/4906698/81562365-1917df00-936b-11ea-8891-3d872b7ab37d.gif)
 
