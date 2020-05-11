@@ -9,6 +9,7 @@ import io.reactivex.Observable
 interface RedditPostsRepository {
     fun getTopPosts(pageSize: Int): PagedRepositoryResponse
     fun refreshPosts(pageSize: Int = DEFAULT_PAGE_SIZE): Completable
+    fun markPostAsDismissed(post: RedditPost)
     fun markPostAsRead(post: RedditPost)
 
     companion object {

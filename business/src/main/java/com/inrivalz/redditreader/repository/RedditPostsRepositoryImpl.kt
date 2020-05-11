@@ -22,7 +22,7 @@ internal class RedditPostsRepositoryImpl(
             pageSize = pageSize
         )
 
-        val pagedData = redditPostsDao.getUnreadPosts()
+        val pagedData = redditPostsDao.getVisiblePosts()
             .toObservable(pageSize, boundaryCallback = boundaryCallback)
 
         return PagedRepositoryResponse(
@@ -37,6 +37,10 @@ internal class RedditPostsRepositoryImpl(
             .doOnSuccess {
                 ioExecutor.execute { redditPostsDao.cleanAnInsert(it) }
             }.toCompletable()
+    }
+
+    override fun markPostAsDismissed(post: RedditPost) {
+        ioExecutor.execute { redditPostsDao.markPostAsDismissed(post.name) }
     }
 
     override fun markPostAsRead(post: RedditPost) {

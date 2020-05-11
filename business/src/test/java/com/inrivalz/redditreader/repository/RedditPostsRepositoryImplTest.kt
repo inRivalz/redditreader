@@ -55,7 +55,7 @@ class RedditPostsRepositoryImplTest {
             (it.arguments[1] as (List<RedditPost>) -> Unit).invoke(listOf())
             boundaryCallback
         }
-        whenever(redditPostsDao.getUnreadPosts()).doReturn(pagedListMock)
+        whenever(redditPostsDao.getVisiblePosts()).doReturn(pagedListMock)
 
         val response = redditPostsRepository.getTopPosts(20)
 

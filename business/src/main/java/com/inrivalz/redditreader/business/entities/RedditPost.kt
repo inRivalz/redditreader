@@ -22,7 +22,7 @@ data class RedditPost(
     @SerializedName("subredit")
     val subredit: String,
     @SerializedName("read")
-    val read: Boolean = false,
+    val read: Boolean,
     @SerializedName("position")
     val position: Int = 0
 )

@@ -69,10 +69,11 @@ class RedditPostListViewModel(
 
     fun onItemSelected(post: RedditPost) {
         itemSelectedDispatcher.onItemSelected(post)
+        redditPostsRepository.markPostAsRead(post)
     }
 
     fun onItemDeleted(position: Int) {
-        listState.value?.getOrNull(position)?.let { redditPostsRepository.markPostAsRead(it) }
+        listState.value?.getOrNull(position)?.let { redditPostsRepository.markPostAsDismissed(it) }
     }
 
     companion object {

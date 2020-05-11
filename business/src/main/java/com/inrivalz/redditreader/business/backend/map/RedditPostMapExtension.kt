@@ -11,6 +11,7 @@ internal fun JsonRedditPost.toRedditPost(): RedditPost {
         created = created,
         thumbnail = thumbnail,
         comments = comments,
-        subredit = subreddit
+        subredit = subreddit,
+        read = false
     )
 }
