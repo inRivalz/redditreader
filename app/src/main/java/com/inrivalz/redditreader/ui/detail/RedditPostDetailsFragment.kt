@@ -2,8 +2,10 @@ package com.inrivalz.redditreader.ui.detail
 
 import android.os.Bundle
 import android.view.View
+import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
+import com.bumptech.glide.Glide
 import com.inrivalz.redditreader.R
 import com.inrivalz.redditreader.business.entities.RedditPost
 import com.inrivalz.redditreader.util.lifecycleViewModel
@@ -26,11 +28,21 @@ class RedditPostDetailsFragment : Fragment(R.layout.fragment_reddit_post_details
 
     private fun populatePost(post: RedditPost) {
         with(post) {
-            vSubReddit.text = "TODO"
+            vSubReddit.text = getString(R.string.reddit_details_subreddit_template, subredit)
+            vPostAuthor.text = getString(R.string.reddit_details_user_template, author)
             vPostTitle.text = title
-            vPostAuthor.text = author
-            // TODO: Thumbnail
             vPostComments.text = resources.getQuantityString(R.plurals.reddit_post_comments, comments.toInt(), comments.toInt())
+            loadThumbnail(thumbnail)
+        }
+    }
+
+    private fun loadThumbnail(thumbnail: String?) {
+        vPostImage.isVisible = thumbnail != null
+        thumbnail?.let {
+            Glide.with(this).load(it)
+            .fitCenter()
+            .placeholder(R.drawable.ic_image_placeholder)
+            .into(vPostImage)
         }
     }
 

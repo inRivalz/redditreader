@@ -21,7 +21,7 @@ class RedditPostViewHolder private constructor(
         vTitle.text = post.title
         vSubtitle.text = containerView.resources.getString(R.string.reddit_post_subtitle, post.author, post.created.toString())
         vPostComments.text = containerView.resources.getQuantityString(R.plurals.reddit_post_comments, post.comments.toInt(), post.comments)
-        loadThumbnail(post.thumbnail)
+        post.thumbnail?.let { loadThumbnail(it) }
     }
 
     private fun loadThumbnail(url: String) {

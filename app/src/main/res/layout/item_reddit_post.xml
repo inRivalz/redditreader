@@ -6,7 +6,10 @@
     android:id="@+id/vPostContainer"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:padding="@dimen/grid_16"
+    android:paddingStart="@dimen/grid_16"
+    android:paddingEnd="@dimen/grid_16"
+    android:paddingTop="@dimen/grid_8"
+    android:paddingBottom="@dimen/grid_8"
     android:background="@drawable/bg_list_item">
 
     <ImageView

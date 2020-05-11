@@ -21,6 +21,7 @@ internal data class JsonRedditPost(
     @SerializedName("title") val title: String,
     @SerializedName("author") val author: String,
     @SerializedName("created") val created: Long,
-    @SerializedName("thumbnail") val thumbnail: String,
-    @SerializedName("num_comments") val comments: Int
+    @SerializedName("thumbnail") val thumbnail: String?,
+    @SerializedName("num_comments") val comments: Int,
+    @SerializedName("subreddit") val subreddit: String
 )

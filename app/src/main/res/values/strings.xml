@@ -5,4 +5,6 @@
         <item quantity="one">%1$d comment</item>
         <item quantity="other">%1$d comments</item>
     </plurals>
+    <string name="reddit_details_subreddit_template">r/%1$s</string>
+    <string name="reddit_details_user_template">Posted by u/%1$s %2$s</string>
 </resources>
