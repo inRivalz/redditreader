@@ -5,6 +5,7 @@ import com.inrivalz.redditreader.network.data.JsonRedditPost
 
 internal fun JsonRedditPost.toRedditPost(): RedditPost {
     return RedditPost(
+        name = name,
         title = title,
         author = author,
         created = created,

@@ -2,41 +2,73 @@ package com.inrivalz.redditreader.ui.list
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
+import androidx.paging.PagedList
 import com.inrivalz.redditreader.business.entities.RedditPost
 import com.inrivalz.redditreader.network.NetworkState
+import com.inrivalz.redditreader.repository.RedditPostsRepository
 import com.inrivalz.redditreader.ui.ItemSelectedDispatcher
+import com.inrivalz.redditreader.util.BaseViewModel
+import com.inrivalz.redditreader.util.Logger
+import io.reactivex.Observable
+import io.reactivex.rxkotlin.subscribeBy
+import io.reactivex.schedulers.Schedulers
 
 class RedditPostListViewModel(
-    private val itemSelectedDispatcher: ItemSelectedDispatcher<RedditPost>
-) : ViewModel() {
+    private val itemSelectedDispatcher: ItemSelectedDispatcher<RedditPost>,
+    private val redditPostsRepository: RedditPostsRepository,
+    private val logger: Logger
+) : BaseViewModel() {
 
-    private var _listState = MutableLiveData<List<RedditPost>>()
-    val listState: LiveData<List<RedditPost>> = _listState
+    private var _listState = MutableLiveData<PagedList<RedditPost>>()
+    val listState: LiveData<PagedList<RedditPost>> = _listState
 
-    private var _networkState = MutableLiveData<NetworkState>()
-    val networkState: LiveData<NetworkState> = _networkState
+    private var _listNetworkState = MutableLiveData<NetworkState>()
+    val listNetworkState: LiveData<NetworkState> = _listNetworkState
+
+    private var _refreshState = MutableLiveData<NetworkState>()
+    val refreshState: LiveData<NetworkState> = _refreshState
+
+    private var retryPagedNetworkRequest: () -> Unit = {}
 
     init {
-        _listState.value = listOf(
-            RedditPost(title = "Post Title", author = "Author", created = 0, thumbnail = "thumbnail"),
-            RedditPost(title = "Post Title2", author = "Author", created = 0, thumbnail = "thumbnail"),
-            RedditPost(title = "Post Title3", author = "Author", created = 0, thumbnail = "thumbnail"),
-            RedditPost(title = "Post Title4", author = "Author", created = 0, thumbnail = "thumbnail"),
-            RedditPost(title = "Post Title5", author = "Author", created = 0, thumbnail = "thumbnail"),
-            RedditPost(title = "Post Title6", author = "Author", created = 0, thumbnail = "thumbnail"),
-            RedditPost(title = "Post Title7", author = "Author", created = 0, thumbnail = "thumbnail"),
-            RedditPost(title = "Post Title8", author = "Author", created = 0, thumbnail = "thumbnail"),
-            RedditPost(title = "Post Title9", author = "Author", created = 0, thumbnail = "thumbnail"),
-            RedditPost(title = "Post Title10", author = "Author", created = 0, thumbnail = "thumbnail")
-        )
+        val pagedResponse = redditPostsRepository.getTopPosts(PAGE_SIZE)
+        retryPagedNetworkRequest = pagedResponse.onRetry
+        pagedResponse.pagedData
+            .subscribeOn(Schedulers.io())
+            .subscribeBy(
+                onNext = { _listState.postValue(it) },
+                onError = { logger.error(this@RedditPostListViewModel, exception = it) }
+            ).autoClear()
+        observePagedNetworkState(pagedResponse.networkState)
+    }
+
+    private fun observePagedNetworkState(networkState: Observable<NetworkState>) {
+        networkState
+            .subscribeOn(Schedulers.io())
+            .subscribeBy(
+                onNext = { _listNetworkState.postValue(it) },
+                onError = {
+                    logger.error(this@RedditPostListViewModel, exception = it)
+                    _listNetworkState.postValue(NetworkState.Failure)
+                }
+            ).autoClear()
     }
 
     fun refresh() {
-        _networkState.value = NetworkState.Success
+        _refreshState.value = NetworkState.Loading
+        redditPostsRepository.refreshPosts()
+            .subscribeOn(Schedulers.io())
+            .subscribeBy(
+                onComplete = { _refreshState.postValue(NetworkState.Success) },
+                onError = { _refreshState.postValue(NetworkState.Failure) }
+            ).autoClear()
     }
 
     fun onItemSelected(post: RedditPost) {
         itemSelectedDispatcher.onItemSelected(post)
+    }
+
+    companion object {
+        const val PAGE_SIZE = 20
     }
 }

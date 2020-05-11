@@ -33,7 +33,7 @@ class RedditPostListFragment : Fragment(R.layout.fragment_reddit_post_list) {
 
     private fun initSwipeRefreshLayout() {
         vSwipeRefresh.setOnRefreshListener { viewModel.refresh() }
-        viewModel.networkState.observe(this, Observer {
+        viewModel.refreshState.observe(this, Observer {
             vSwipeRefresh.isRefreshing = it == NetworkState.Loading
         })
     }

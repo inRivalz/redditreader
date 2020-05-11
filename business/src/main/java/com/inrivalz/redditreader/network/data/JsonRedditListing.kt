@@ -17,6 +17,7 @@ internal data class JsonRedditListingChild(
 )
 
 internal data class JsonRedditPost(
+    @SerializedName("name") val name: String,
     @SerializedName("title") val title: String,
     @SerializedName("author") val author: String,
     @SerializedName("created") val created: Long,

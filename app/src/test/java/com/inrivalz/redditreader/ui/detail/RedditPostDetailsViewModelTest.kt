@@ -3,6 +3,7 @@ package com.inrivalz.redditreader.ui.detail
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import androidx.lifecycle.Observer
 import com.inrivalz.redditreader.business.entities.RedditPost
+import com.inrivalz.redditreader.testutil.aRedditPost
 import com.inrivalz.redditreader.ui.ItemSelectedDispatcher
 import com.inrivalz.redditreader.util.Logger
 import com.nhaarman.mockitokotlin2.any
@@ -31,7 +32,7 @@ class RedditPostDetailsViewModelTest {
 
     @Test
     fun `Should emit reddit post from dispatcher on initialization`() {
-        val redditPost = RedditPost(title = "Post Title", author = "Author", created = 0, thumbnail = "thumbnail")
+        val redditPost = aRedditPost()
         whenever(itemSelectedDispatcher.selectedItemStream).doReturn(Observable.just(redditPost))
 
         viewModelIsInitialized()
