@@ -25,7 +25,7 @@ data class RedditPost(
     @SerializedName("subredit")
     val subredit: String,
     @SerializedName("read")
-    val read: Boolean,
+    val read: Boolean = false,
     @SerializedName("position")
     val position: Int = 0
 ) : Parcelable

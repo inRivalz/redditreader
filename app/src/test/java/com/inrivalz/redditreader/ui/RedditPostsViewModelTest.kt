@@ -2,6 +2,7 @@ package com.inrivalz.redditreader.ui
 
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import androidx.lifecycle.Observer
+import androidx.lifecycle.SavedStateHandle
 import com.inrivalz.redditreader.business.entities.RedditPost
 import com.inrivalz.redditreader.testutil.aRedditPost
 import com.inrivalz.redditreader.util.Logger
@@ -21,6 +22,7 @@ class RedditPostsViewModelTest {
     @get:Rule
     val rule = InstantTaskExecutorRule()
 
+    private val savedStateHandle = mock<SavedStateHandle>()
     private val dispatcher = ItemSelectedDispatcherImpl<RedditPost>()
     private val logger = mock<Logger>()
 
@@ -30,7 +32,7 @@ class RedditPostsViewModelTest {
     private val eventObserver = mock<Observer<RedditPostsViewModel.UiEvent>>()
 
     private fun viewModelIsInitialized(disp: ItemSelectedDispatcher<RedditPost> = dispatcher) {
-        redditPostsViewModel = RedditPostsViewModel(disp, logger)
+        redditPostsViewModel = RedditPostsViewModel(savedStateHandle, disp, logger)
         redditPostsViewModel.uiState.observeForever(stateObserver)
         redditPostsViewModel.uiEvent.observeForever(eventObserver)
     }

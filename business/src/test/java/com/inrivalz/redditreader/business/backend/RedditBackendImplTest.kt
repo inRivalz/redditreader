@@ -59,8 +59,8 @@ class RedditBackendImplTest {
 
         verify(redditApi).getTop(10)
         testObserver.assertValue(listOf(
-            RedditPost(name = "name", title = "Post Title1", author = "Author1", created = 0, thumbnail = "thumbnail"),
-            RedditPost(name = "name", title = "Post Title2", author = "Author2", created = 0, thumbnail = "thumbnail")
+            RedditPost(name = "name", title = "Post Title1", author = "Author1", created = 0, thumbnail = "thumbnail", subredit = ""),
+            RedditPost(name = "name", title = "Post Title2", author = "Author2", created = 0, thumbnail = "thumbnail", subredit = "")
         ))
     }
 
@@ -71,7 +71,9 @@ class RedditBackendImplTest {
                 title = "Post Title$suffix",
                 author = "Author$suffix",
                 created = 0L,
-                thumbnail = "thumbnail"
+                thumbnail = "thumbnail",
+                comments = 0,
+                subreddit = ""
             )
         )
     }

@@ -35,41 +35,6 @@ class RedditPostBoundaryCallbackTest {
     }
 
     @Test
-    fun `Should run Initial request when on Zero Items Loaded is called`() {
-        whenever(redditBackend.getTop(20)).doReturn(Single.never())
-
-        redditPostBoundaryCallback.onZeroItemsLoaded()
-
-        verify(pagingRequestHelper).runIfNotRunning(eq(PagingRequestHelper.RequestType.INITIAL), any())
-    }
-
-    @Test
-    fun `Should call callback and lambda when initial request is success`() {
-        val posts = listOf(aRedditPost())
-        val callbackMock = helperRunsRequestWithCallback()
-        whenever(redditBackend.getTop(20)).doReturn(Single.just(posts))
-
-        redditPostBoundaryCallback.onZeroItemsLoaded()
-
-        verify(pagingRequestHelper).runIfNotRunning(eq(PagingRequestHelper.RequestType.INITIAL), any())
-        verify(onPostFetched).invoke(posts)
-        verify(callbackMock).recordSuccess()
-    }
-
-    @Test
-    fun `Should call callback when initial request is failure`() {
-        val exception = Exception("Error")
-        val callbackMock = helperRunsRequestWithCallback()
-        whenever(redditBackend.getTop(20)).doReturn(Single.error(exception))
-
-        redditPostBoundaryCallback.onZeroItemsLoaded()
-
-        verify(pagingRequestHelper).runIfNotRunning(eq(PagingRequestHelper.RequestType.INITIAL), any())
-        verify(onPostFetched, never()).invoke(any())
-        verify(callbackMock).recordFailure(exception)
-    }
-
-    @Test
     fun `Should run get top after request when on item at end loaded is called`() {
         val item = aRedditPost().copy("after")
         whenever(redditBackend.getTopAfter("after", 20)).doReturn(Single.never())

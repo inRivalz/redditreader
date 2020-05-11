@@ -62,6 +62,12 @@ class RedditPostListFragment : Fragment(R.layout.fragment_reddit_post_list) {
         viewModel.refreshState.observe(this, Observer {
             vSwipeRefresh.isRefreshing = it == NetworkState.Loading
         })
+        refreshInitial()
+    }
+
+    private fun refreshInitial() {
+        vSwipeRefresh.isRefreshing = true
+        viewModel.refresh()
     }
 
     private fun observeViewModelState() {

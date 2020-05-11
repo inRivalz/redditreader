@@ -13,6 +13,7 @@ import com.nhaarman.mockitokotlin2.mock
 import com.nhaarman.mockitokotlin2.never
 import com.nhaarman.mockitokotlin2.verify
 import com.nhaarman.mockitokotlin2.whenever
+import io.ktor.client.HttpClient
 import io.reactivex.Observable
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.Rule
@@ -25,6 +26,7 @@ class RedditPostDetailsViewModelTest {
 
     private val itemSelectedDispatcher = mock<ItemSelectedDispatcher<RedditPost>>()
     private val logger = mock<Logger>()
+    private val httpClient = mock<HttpClient>()
 
     private lateinit var redditPostDetailsViewModel: RedditPostDetailsViewModel
 
@@ -66,7 +68,7 @@ class RedditPostDetailsViewModelTest {
     }
 
     private fun viewModelIsInitialized() {
-        redditPostDetailsViewModel = RedditPostDetailsViewModel(itemSelectedDispatcher, logger)
+        redditPostDetailsViewModel = RedditPostDetailsViewModel(itemSelectedDispatcher, logger, httpClient)
         redditPostDetailsViewModel.postState.observeForever(postStateObserver)
     }
 }
