@@ -6,6 +6,7 @@ import com.inrivalz.redditreader.network.data.JsonRedditListing
 import com.inrivalz.redditreader.network.data.JsonRedditListingChild
 import com.inrivalz.redditreader.network.data.JsonRedditListingData
 import com.inrivalz.redditreader.network.data.JsonRedditPost
+import com.inrivalz.redditreader.testutil.aRedditPost
 import com.nhaarman.mockitokotlin2.doReturn
 import com.nhaarman.mockitokotlin2.mock
 import com.nhaarman.mockitokotlin2.verify
@@ -33,9 +34,7 @@ class RedditBackendImplTest {
         val testObserver = redditBackendImpl.getTop(30).test()
 
         verify(redditApi).getTop(30)
-        testObserver.assertValue(listOf(
-            RedditPost(title = "Post Title", author = "Author", created = 0, thumbnail = "thumbnail")
-        ))
+        testObserver.assertValue(listOf(aRedditPost()))
     }
 
     @Test
@@ -46,9 +45,7 @@ class RedditBackendImplTest {
         val testObserver = redditBackendImpl.getTopAfter("after", 20).test()
 
         verify(redditApi).getTopAfter("after", 20)
-        testObserver.assertValue(listOf(
-            RedditPost(title = "Post Title", author = "Author", created = 0, thumbnail = "thumbnail")
-        ))
+        testObserver.assertValue(listOf(aRedditPost()))
     }
 
     @Test
@@ -62,14 +59,15 @@ class RedditBackendImplTest {
 
         verify(redditApi).getTop(10)
         testObserver.assertValue(listOf(
-            RedditPost(title = "Post Title1", author = "Author1", created = 0, thumbnail = "thumbnail"),
-            RedditPost(title = "Post Title2", author = "Author2", created = 0, thumbnail = "thumbnail")
+            RedditPost(name = "name", title = "Post Title1", author = "Author1", created = 0, thumbnail = "thumbnail"),
+            RedditPost(name = "name", title = "Post Title2", author = "Author2", created = 0, thumbnail = "thumbnail")
         ))
     }
 
     private fun aJsonRedditListingChild(suffix: String = ""): JsonRedditListingChild {
         return JsonRedditListingChild(
             JsonRedditPost(
+                name = "name",
                 title = "Post Title$suffix",
                 author = "Author$suffix",
                 created = 0L,

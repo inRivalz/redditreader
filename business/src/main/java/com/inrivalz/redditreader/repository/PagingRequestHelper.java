@@ -104,8 +104,7 @@ import java.util.concurrent.atomic.AtomicBoolean;
  * });
  * </pre>
  */
-// THIS class is likely to be moved into the library in a future release. Feel free to copy it
-// from this sample.
+// Copied from the paging sample
 public class PagingRequestHelper {
     private final Object mLock = new Object();
     private final Executor mRetryService;

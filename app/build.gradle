@@ -3,7 +3,6 @@ plugins {
     id 'kotlin-android'
     id 'kotlin-android-extensions'
     id 'com.hiya.jacoco-android'
-    id 'kotlin-kapt'
 }
 apply from: "$rootDir/quality.gradle"
 apply from: "$rootDir/servers.gradle"

@@ -14,5 +14,6 @@ ext.jacocoExceptions = [
         '**/InnerDividerItemDecoration.*',
         '**/ViewExtension.*',
         '**/AppModule.*',
-        '**/Logger*'
+        '**/Logger*',
+        '**/PagingRequestHelper*'
 ]

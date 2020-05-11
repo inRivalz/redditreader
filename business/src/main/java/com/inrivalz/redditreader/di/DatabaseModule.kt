@@ -4,6 +4,7 @@ import android.content.Context
 import androidx.room.Room
 import com.inrivalz.redditreader.db.RedditDatabase
 import com.inrivalz.redditreader.db.RedditPostsDao
+import com.inrivalz.redditreader.repository.RedditPostBoundaryCallbackFactory
 import com.inrivalz.redditreader.repository.RedditPostsRepository
 import com.inrivalz.redditreader.repository.RedditPostsRepositoryImpl
 import org.koin.dsl.module
@@ -14,7 +15,8 @@ val databaseModule = module {
     factory { Executors.newSingleThreadExecutor() as Executor }
     single { provideRedditDatabase(get()) }
     single { provideRedditPostsDao(get()) }
-    single { RedditPostsRepositoryImpl(get(), get(), get()) as RedditPostsRepository }
+    single { RedditPostBoundaryCallbackFactory(get()) }
+    single { RedditPostsRepositoryImpl(get(), get(), get(), get()) as RedditPostsRepository }
 }
 
 private fun provideRedditDatabase(context: Context): RedditDatabase {

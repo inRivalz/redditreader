@@ -8,21 +8,19 @@ import io.reactivex.Completable
 import java.util.concurrent.Executor
 
 internal class RedditPostsRepositoryImpl(
+    private val redditPostBoundaryCallbackFactory: RedditPostBoundaryCallbackFactory,
     private val redditPostsDao: RedditPostsDao,
     private val redditBackend: RedditBackend,
     private val ioExecutor: Executor
 ) : RedditPostsRepository {
 
     override fun getTopPosts(pageSize: Int): PagedRepositoryResponse {
-        val helper =
-            PagingRequestHelper(ioExecutor)
-        val boundaryCallback =
-            RedditPostBoundaryCallback(
-                redditBackend = redditBackend,
-                pagingRequestHelper = helper,
-                onPostFetched = ::insertPostsIntoDb,
-                pageSize = pageSize
-            )
+        val helper = PagingRequestHelper(ioExecutor)
+        val boundaryCallback = redditPostBoundaryCallbackFactory.create(
+            helper = helper,
+            onPostFetched = ::insertPostsIntoDb,
+            pageSize = pageSize
+        )
 
         val pagedData = redditPostsDao.getUnreadPosts()
             .toObservable(pageSize, boundaryCallback = boundaryCallback)

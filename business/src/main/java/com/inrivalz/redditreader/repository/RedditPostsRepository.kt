@@ -7,7 +7,6 @@ import io.reactivex.Completable
 import io.reactivex.Observable
 
 interface RedditPostsRepository {
-
     fun getTopPosts(pageSize: Int): PagedRepositoryResponse
     fun refreshPosts(pageSize: Int = DEFAULT_PAGE_SIZE): Completable
 

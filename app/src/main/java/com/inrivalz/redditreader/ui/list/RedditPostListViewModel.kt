@@ -22,8 +22,8 @@ class RedditPostListViewModel(
     private var _listState = MutableLiveData<PagedList<RedditPost>>()
     val listState: LiveData<PagedList<RedditPost>> = _listState
 
-    private var _pagedNetworkState = MutableLiveData<NetworkState>()
-    val pagedNetworkState: LiveData<NetworkState> = _pagedNetworkState
+    private var _listNetworkState = MutableLiveData<NetworkState>()
+    val listNetworkState: LiveData<NetworkState> = _listNetworkState
 
     private var _refreshState = MutableLiveData<NetworkState>()
     val refreshState: LiveData<NetworkState> = _refreshState
@@ -46,8 +46,11 @@ class RedditPostListViewModel(
         networkState
             .subscribeOn(Schedulers.io())
             .subscribeBy(
-                onNext = { _pagedNetworkState.postValue(it) },
-                onError = { logger.error(this@RedditPostListViewModel, exception = it) }
+                onNext = { _listNetworkState.postValue(it) },
+                onError = {
+                    logger.error(this@RedditPostListViewModel, exception = it)
+                    _listNetworkState.postValue(NetworkState.Failure)
+                }
             ).autoClear()
     }
 
