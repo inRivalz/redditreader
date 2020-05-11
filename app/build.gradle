@@ -60,11 +60,19 @@ dependencies {
     implementation deps.androidx.recyclerview
     implementation deps.androidx.swiperefreshlayout
     implementation deps.androidx.paging
+    implementation deps.androidx.savedstate
     implementation deps.koin.android
     implementation deps.koin.viewmodel
+    implementation deps.koin.viewmodelx
     implementation deps.rx.rxjava
     implementation deps.rx.kotlin
     implementation deps.rx.android
+    implementation deps.glide.runtime
+    implementation deps.prettytime.runtime
+    implementation deps.kotlinx.ktor
+    implementation deps.kotlinx.coroutines_android
+
+    annotationProcessor deps.glide.compiler
 
     testImplementation deps.tests.junit
     testImplementation deps.tests.assertj

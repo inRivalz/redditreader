@@ -60,12 +60,28 @@ class RedditPostListViewModel(
             .subscribeOn(Schedulers.io())
             .subscribeBy(
                 onComplete = { _refreshState.postValue(NetworkState.Success) },
-                onError = { _refreshState.postValue(NetworkState.Failure) }
+                onError = {
+                    _refreshState.postValue(NetworkState.Failure)
+                    logger.error(this@RedditPostListViewModel, exception = it)
+                }
             ).autoClear()
     }
 
     fun onItemSelected(post: RedditPost) {
         itemSelectedDispatcher.onItemSelected(post)
+        redditPostsRepository.markPostAsRead(post)
+    }
+
+    fun onItemDeleted(position: Int) {
+        listState.value?.getOrNull(position)?.let { redditPostsRepository.markPostAsDismissed(it) }
+    }
+
+    fun deleteAll() {
+        redditPostsRepository.dismissAll()
+    }
+
+    fun clearAllDismissed() {
+        redditPostsRepository.clearAllDismissed()
     }
 
     companion object {

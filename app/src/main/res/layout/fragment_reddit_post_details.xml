@@ -10,7 +10,7 @@
         android:id="@+id/vRedditPostListContainer"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_margin="@dimen/grid_16">
+        android:padding="@dimen/grid_16">
 
         <TextView
             android:id="@+id/vSubReddit"
@@ -47,12 +47,14 @@
 
         <ImageView
             android:id="@+id/vPostImage"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
             android:layout_margin="@dimen/grid_16"
+            android:foreground="?attr/selectableItemBackground"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/vPostTitle" />
+            app:layout_constraintTop_toBottomOf="@id/vPostTitle"
+            app:layout_constraintDimensionRatio="H,1:1"/>
 
         <TextView
             android:id="@+id/vPostComments"
@@ -63,6 +65,8 @@
             android:drawableStart="@drawable/ic_reddit_comments"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/vPostImage"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintVertical_bias="0"
             tools:text="1.5k Comments" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>

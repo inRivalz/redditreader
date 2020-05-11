@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item
+        android:id="@+id/action_item_dismiss_all"
+        android:title="@string/dismiss_all"
+        android:icon="@drawable/ic_archive"
+        app:showAsAction="never"/>
+
+    <item
+        android:id="@+id/action_item_undo_dismiss"
+        android:title="@string/undo_dismiss_all"
+        android:icon="@drawable/ic_undo"
+        app:showAsAction="never"/>
+
+</menu>

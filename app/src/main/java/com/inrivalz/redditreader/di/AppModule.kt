@@ -1,5 +1,6 @@
 package com.inrivalz.redditreader.di
 
+import androidx.lifecycle.SavedStateHandle
 import com.inrivalz.redditreader.business.entities.RedditPost
 import com.inrivalz.redditreader.ui.ItemSelectedDispatcher
 import com.inrivalz.redditreader.ui.ItemSelectedDispatcherImpl
@@ -16,14 +17,14 @@ val appModule = module {
 
     scope<RedditPostsActivity> {
         scoped { ItemSelectedDispatcherImpl<RedditPost>() as ItemSelectedDispatcher<RedditPost> }
-        viewModel { RedditPostsViewModel(get(), get()) }
+        viewModel { (handle: SavedStateHandle) -> RedditPostsViewModel(handle, get(), get()) }
 
         scope<RedditPostListFragment> {
             viewModel { RedditPostListViewModel(get(), get(), get()) }
         }
 
         scope<RedditPostDetailsFragment> {
-            viewModel { RedditPostDetailsViewModel(get(), get()) }
+            viewModel { RedditPostDetailsViewModel(get(), get(), get()) }
         }
     }
 }

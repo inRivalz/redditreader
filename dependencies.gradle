@@ -6,6 +6,7 @@ versions.material = "1.1.0"
 versions.constraint_layout = "1.1.3"
 versions.recyclerview = "1.1.0"
 versions.swiperefreshlayout = "1.0.0"
+versions.savedstate = "2.2.0"
 versions.retrofit = "2.8.1"
 versions.gson = "2.8.6"
 versions.okhttp_logging = "3.9.0"
@@ -15,6 +16,10 @@ versions.rxandroid = "2.1.1"
 versions.koin = "2.1.5"
 versions.androidx_paging = "2.1.2"
 versions.room = "2.2.5"
+versions.glide = "4.11.0"
+versions.ktor = "1.2.5"
+versions.prettytime = "4.0.4.Final"
+versions.coroutines_android = "1.3.6"
 versions.junit = "4.12"
 versions.junit_ext = "1.1.1"
 versions.assertj = "3.16.0"
@@ -32,6 +37,11 @@ androidx.recyclerview = "androidx.recyclerview:recyclerview:$versions.recyclervi
 androidx.swiperefreshlayout = "androidx.swiperefreshlayout:swiperefreshlayout:$versions.swiperefreshlayout"
 androidx.paging = "androidx.paging:paging-runtime-ktx:$versions.androidx_paging"
 androidx.paging_rx = "androidx.paging:paging-rxjava2-ktx:$versions.androidx_paging"
+androidx.savedstate = "androidx.lifecycle:lifecycle-viewmodel-savedstate:$versions.savedstate"
+
+def kotlinx = [:]
+kotlinx.coroutines_android = "org.jetbrains.kotlinx:kotlinx-coroutines-android:$versions.coroutines_android"
+kotlinx.ktor = "io.ktor:ktor-client-android:$versions.ktor"
 
 def room = [:]
 room.runtime = "androidx.room:room-runtime:$versions.room"
@@ -59,6 +69,14 @@ def koin = [:]
 koin.core = "org.koin:koin-core:$versions.koin"
 koin.android = "org.koin:koin-android:$versions.koin"
 koin.viewmodel = "org.koin:koin-android-viewmodel:$versions.koin"
+koin.viewmodelx = "org.koin:koin-androidx-viewmodel:$versions.koin"
+
+def glide = [:]
+glide.runtime = "com.github.bumptech.glide:glide:$versions.glide"
+glide.compiler = "com.github.bumptech.glide:compiler:$versions.glide"
+
+def prettytime = [:]
+prettytime.runtime = "org.ocpsoft.prettytime:prettytime:$versions.prettytime"
 
 def tests = [:]
 tests.junit = "junit:junit:$versions.junit"
@@ -73,12 +91,15 @@ uitests.junit_ext = "androidx.test.ext:junit:$versions.junit_ext"
 
 ext.deps = [:]
 ext.deps.kotlin = kotlin
+ext.deps.kotlinx = kotlinx
 ext.deps.androidx = androidx
 ext.deps.material = material
 ext.deps.retrofit = retrofit
 ext.deps.gson = gson
 ext.deps.rx = rx
 ext.deps.koin = koin
+ext.deps.glide = glide
+ext.deps.prettytime = prettytime
 ext.deps.room = room
 ext.deps.tests = tests
 ext.deps.uitests = uitests
