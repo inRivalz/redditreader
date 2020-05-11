@@ -12,12 +12,13 @@ import com.inrivalz.redditreader.R
 class SwipeToDeleteCallback(
     private val context: Context,
     private val onItemDeleted: (Int) -> Unit
-): ItemTouchHelper.SimpleCallback(0,
-    ItemTouchHelper.RIGHT
-) {
+) : ItemTouchHelper.SimpleCallback(0, ItemTouchHelper.RIGHT) {
 
-    private val icon: Drawable by lazy { context.resources.getDrawable(
-        R.drawable.ic_delete, null) }
+    private val icon: Drawable by lazy {
+        context.resources.getDrawable(
+            R.drawable.ic_delete, null
+        )
+    }
     private val margin = context.resources.getDimensionPixelSize(R.dimen.grid_32)
 
     override fun onMove(

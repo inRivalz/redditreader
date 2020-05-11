@@ -18,9 +18,9 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModel
 import com.inrivalz.redditreader.BuildConfig
+import java.io.File
 import org.koin.android.scope.lifecycleScope
 import org.koin.android.viewmodel.scope.viewModel
-import java.io.File
 
 inline fun <reified T : View> ViewGroup.inflate(
     @LayoutRes layoutRes: Int,
@@ -59,7 +59,6 @@ fun Activity.openFile(file: File) {
             setDataAndType(uri, it)
             startActivity(this)
         }
-
     }
 }
 

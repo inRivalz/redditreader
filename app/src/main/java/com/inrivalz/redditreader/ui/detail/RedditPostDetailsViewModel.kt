@@ -14,12 +14,12 @@ import io.ktor.http.HttpMethod
 import io.ktor.http.isSuccess
 import io.ktor.util.cio.writeChannel
 import io.reactivex.rxkotlin.subscribeBy
+import java.io.File
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.io.copyAndClose
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
-import java.io.File
 
 class RedditPostDetailsViewModel(
     itemSelectedDispatcher: ItemSelectedDispatcher<RedditPost>,
@@ -39,12 +39,6 @@ class RedditPostDetailsViewModel(
                 onNext = { _postState.postValue(it) },
                 onError = { logger.error(this@RedditPostDetailsViewModel, exception = it) }
             ).autoClear()
-    }
-
-    fun openImage() {
-        _postState.value?.thumbnail?.let {
-            _uiEvent.value = UiEvent.OpenBrowser(it)
-        }
     }
 
     fun openImage(file: File, url: String) {

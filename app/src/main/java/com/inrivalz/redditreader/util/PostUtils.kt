@@ -1,8 +1,8 @@
 package com.inrivalz.redditreader.util
 
-import org.ocpsoft.prettytime.PrettyTime
-import java.util.*
+import java.util.Date
 import java.util.concurrent.TimeUnit
+import org.ocpsoft.prettytime.PrettyTime
 
 fun Long.toPrettyDate(): String {
     val date = Date(TimeUnit.SECONDS.toMillis(this))

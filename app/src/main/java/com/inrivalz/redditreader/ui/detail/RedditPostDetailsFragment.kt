@@ -16,9 +16,8 @@ import com.inrivalz.redditreader.util.nonNullObserve
 import com.inrivalz.redditreader.util.openFile
 import com.inrivalz.redditreader.util.toPrettyDate
 import com.inrivalz.redditreader.util.toThousandString
-import kotlinx.android.synthetic.main.fragment_reddit_post_details.*
 import java.io.File
-
+import kotlinx.android.synthetic.main.fragment_reddit_post_details.*
 
 class RedditPostDetailsFragment : Fragment(R.layout.fragment_reddit_post_details) {
 
@@ -28,10 +27,6 @@ class RedditPostDetailsFragment : Fragment(R.layout.fragment_reddit_post_details
         super.onViewCreated(view, savedInstanceState)
         observePostState()
         observeUiEvents()
-        vPostImage.setOnClickListener {
-            val file = File(requireContext() .getExternalFilesDir(Environment.DIRECTORY_DOWNLOADS), FILENAME)
-            viewModel.openImage(file, viewModel.postState.value!!.thumbnail!!)
-        }
     }
 
     private fun observePostState() {
@@ -73,7 +68,10 @@ class RedditPostDetailsFragment : Fragment(R.layout.fragment_reddit_post_details
                 .into(vPostImage)
 
             vPostImage.setOnClickListener {
-                val file = File(requireContext() .getExternalFilesDir(Environment.DIRECTORY_DOWNLOADS), FILENAME)
+                val file = File(
+                    requireContext().getExternalFilesDir(Environment.DIRECTORY_DOWNLOADS),
+                    FILENAME
+                )
                 viewModel.openImage(file, thumbnail)
             }
         }

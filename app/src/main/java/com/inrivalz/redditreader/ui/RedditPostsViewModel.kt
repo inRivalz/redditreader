@@ -50,7 +50,6 @@ class RedditPostsViewModel(
         }
     }
 
-
     sealed class UiState : Parcelable {
         @Parcelize
         object ShowMaster : UiState()

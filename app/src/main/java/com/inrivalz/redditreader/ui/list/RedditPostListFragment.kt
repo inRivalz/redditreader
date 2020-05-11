@@ -59,7 +59,7 @@ class RedditPostListFragment : Fragment(R.layout.fragment_reddit_post_list) {
 
     private fun initSwipeRefreshLayout() {
         vSwipeRefresh.setOnRefreshListener { viewModel.refresh() }
-        viewModel.refreshState.observe(this, Observer {
+        viewModel.refreshState.observe(viewLifecycleOwner, Observer {
             vSwipeRefresh.isRefreshing = it == NetworkState.Loading
         })
         refreshInitial()
@@ -71,7 +71,7 @@ class RedditPostListFragment : Fragment(R.layout.fragment_reddit_post_list) {
     }
 
     private fun observeViewModelState() {
-        viewModel.listState.observe(this, Observer { posts ->
+        viewModel.listState.observe(viewLifecycleOwner, Observer { posts ->
             adapter.submitList(posts)
         })
     }
