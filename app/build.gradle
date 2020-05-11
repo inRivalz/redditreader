@@ -68,6 +68,9 @@ dependencies {
     implementation deps.glide.runtime
     implementation deps.prettytime.runtime
 
+    implementation "io.ktor:ktor-client-android:1.2.5"
+    implementation deps.kotlinx.coroutines_android
+
     annotationProcessor deps.glide.compiler
 
     testImplementation deps.tests.junit
