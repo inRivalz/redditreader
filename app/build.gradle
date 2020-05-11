@@ -3,6 +3,7 @@ plugins {
     id 'kotlin-android'
     id 'kotlin-android-extensions'
     id 'com.hiya.jacoco-android'
+    id 'kotlin-kapt'
 }
 apply from: "$rootDir/quality.gradle"
 apply from: "$rootDir/servers.gradle"
@@ -59,6 +60,7 @@ dependencies {
     implementation deps.androidx.constraint_layout
     implementation deps.androidx.recyclerview
     implementation deps.androidx.swiperefreshlayout
+    implementation deps.androidx.paging
     implementation deps.koin.android
     implementation deps.koin.viewmodel
     implementation deps.rx.rxjava

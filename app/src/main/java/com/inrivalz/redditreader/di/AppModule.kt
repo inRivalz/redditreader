@@ -19,7 +19,7 @@ val appModule = module {
         viewModel { RedditPostsViewModel(get(), get()) }
 
         scope<RedditPostListFragment> {
-            viewModel { RedditPostListViewModel(get()) }
+            viewModel { RedditPostListViewModel(get(), get()) }
         }
 
         scope<RedditPostDetailsFragment> {

@@ -1,30 +1,39 @@
 plugins {
-    id 'java-library'
-    id 'kotlin'
-    id 'jacoco'
+    id 'com.android.library'
+    id 'kotlin-android'
+    id 'kotlin-android-extensions'
+    id 'kotlin-kapt'
 }
 
-java {
-    sourceCompatibility = JavaVersion.VERSION_1_7
-    targetCompatibility = JavaVersion.VERSION_1_7
-}
+android {
+    compileSdkVersion 29
+    buildToolsVersion "29.0.3"
 
-test {
-    useJUnit()
-    finalizedBy jacocoTestReport
-}
+    defaultConfig {
+        minSdkVersion 26
+        targetSdkVersion 29
+        versionCode 1
+        versionName "1.0"
 
-jacocoTestReport {
-    dependsOn test
-    reports {
-        xml {
-            enabled true
-            destination file("$buildDir/jacoco/jacoco.xml")
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        consumerProguardFiles "consumer-rules.pro"
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+    kotlinOptions {
+        jvmTarget = '1.8'
     }
 }
 
-// We can split this module in `data` and `domain` (business) but I don't think it's needed for only one endpoint call
 dependencies {
     implementation deps.kotlin.stdlib
     implementation deps.koin.core
@@ -34,9 +43,16 @@ dependencies {
     implementation deps.retrofit.gson_converter
     implementation deps.retrofit.adapter_rxjava
     implementation deps.retrofit.okhttp_logging_interceptor
+    implementation deps.androidx.paging
+    implementation deps.androidx.paging_rx
+    implementation deps.room.runtime
+    implementation deps.room.rxjava
+    implementation deps.rx.kotlin
 
     testImplementation deps.tests.junit
     testImplementation deps.tests.assertj
     testImplementation deps.tests.mockito
     testImplementation deps.tests.koin
+    
+    kapt deps.room.compiler
 }
