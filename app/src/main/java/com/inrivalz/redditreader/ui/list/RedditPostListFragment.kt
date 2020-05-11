@@ -1,6 +1,9 @@
 package com.inrivalz.redditreader.ui.list
 
 import android.os.Bundle
+import android.view.Menu
+import android.view.MenuInflater
+import android.view.MenuItem
 import android.view.View
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
@@ -20,9 +23,29 @@ class RedditPostListFragment : Fragment(R.layout.fragment_reddit_post_list) {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        setHasOptionsMenu(true)
         initSwipeRefreshLayout()
         initRecyclerView()
         observeViewModelState()
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+        inflater.inflate(R.menu.menu_posts_list, menu)
+        super.onCreateOptionsMenu(menu, inflater)
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        return when (item.itemId) {
+            R.id.action_item_dismiss_all -> {
+                viewModel.deleteAll()
+                true
+            }
+            R.id.action_item_undo_dismiss -> {
+                viewModel.clearAllDismissed()
+                true
+            }
+            else -> super.onOptionsItemSelected(item)
+        }
     }
 
     private fun initRecyclerView() {

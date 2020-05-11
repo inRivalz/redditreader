@@ -31,19 +31,20 @@ internal class RedditPostBoundaryCallback(
         subject.hide()
     }
 
-    override fun onZeroItemsLoaded() {
-        pagingRequestHelper.runIfNotRunning(PagingRequestHelper.RequestType.INITIAL) { callback ->
-            redditBackend.getTop(pageSize)
-                .subscribeOn(Schedulers.io())
-                .subscribeBy(
-                    onSuccess = {
-                        onPostFetched(it)
-                        callback.recordSuccess()
-                    },
-                    onError = { callback.recordFailure(it) }
-                )
-        }
-    }
+    // Commented for now, if you dismiss all the posts this will trigger an infinite loop trying to fetch the dismissed posts
+    //override fun onZeroItemsLoaded() {
+    //    pagingRequestHelper.runIfNotRunning(PagingRequestHelper.RequestType.INITIAL) { callback ->
+    //        redditBackend.getTop(pageSize)
+    //            .subscribeOn(Schedulers.io())
+    //            .subscribeBy(
+    //                onSuccess = {
+    //                    onPostFetched(it)
+    //                    callback.recordSuccess()
+    //                },
+    //                onError = { callback.recordFailure(it) }
+    //            )
+    //    }
+    //}
 
     override fun onItemAtEndLoaded(itemAtEnd: RedditPost) {
         pagingRequestHelper.runIfNotRunning(PagingRequestHelper.RequestType.AFTER) { callback ->

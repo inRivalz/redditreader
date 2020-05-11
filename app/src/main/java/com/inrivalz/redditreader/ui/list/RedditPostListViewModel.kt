@@ -76,6 +76,14 @@ class RedditPostListViewModel(
         listState.value?.getOrNull(position)?.let { redditPostsRepository.markPostAsDismissed(it) }
     }
 
+    fun deleteAll() {
+        redditPostsRepository.dismissAll()
+    }
+
+    fun clearAllDismissed() {
+        redditPostsRepository.clearAllDismissed()
+    }
+
     companion object {
         const val PAGE_SIZE = 20
     }

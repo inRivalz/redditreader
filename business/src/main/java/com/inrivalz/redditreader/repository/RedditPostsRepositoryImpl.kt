@@ -47,6 +47,14 @@ internal class RedditPostsRepositoryImpl(
         ioExecutor.execute { redditPostsDao.markPostAsRead(post.name) }
     }
 
+    override fun dismissAll() {
+        ioExecutor.execute { redditPostsDao.markAllAsDismissed() }
+    }
+
+    override fun clearAllDismissed() {
+        ioExecutor.execute { redditPostsDao.clearAllDismissed() }
+    }
+
     private fun insertPostsIntoDb(posts: List<RedditPost>) {
         ioExecutor.execute {
             redditPostsDao.insertSorted(posts)

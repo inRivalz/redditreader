@@ -31,6 +31,12 @@ internal abstract class RedditPostsDao {
     @Query("INSERT OR REPLACE INTO posts_state (name, dismissed, read) VALUES (:postName, 1, 1)")
     abstract fun markPostAsDismissed(postName: String)
 
+    @Query("INSERT OR REPLACE INTO posts_state (name, dismissed, read) SELECT a.name, 1, 1 FROM posts a")
+    abstract fun markAllAsDismissed()
+
+    @Query("UPDATE posts_state SET dismissed = 0")
+    abstract fun clearAllDismissed()
+
     @Transaction
     open fun cleanAnInsert(redditPosts: List<RedditPost>) {
         deleteAllPosts()

@@ -11,6 +11,8 @@ interface RedditPostsRepository {
     fun refreshPosts(pageSize: Int = DEFAULT_PAGE_SIZE): Completable
     fun markPostAsDismissed(post: RedditPost)
     fun markPostAsRead(post: RedditPost)
+    fun dismissAll()
+    fun clearAllDismissed()
 
     companion object {
         private const val DEFAULT_PAGE_SIZE = 30
