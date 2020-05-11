@@ -3,5 +3,7 @@
     <!-- Theme Attributes -->
     <declare-styleable name="ThemeAttributes">
         <attr name="colorDivider" format="reference"/>
+        <attr name="colorTitleUnread" format="reference"/>
+        <attr name="colorTitleRead" format="reference"/>
     </declare-styleable>
 </resources>

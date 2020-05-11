@@ -1,5 +1,6 @@
 package com.inrivalz.redditreader.ui.list
 
+import android.graphics.Typeface
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
@@ -7,6 +8,7 @@ import com.bumptech.glide.Glide
 import com.bumptech.glide.load.resource.bitmap.RoundedCorners
 import com.inrivalz.redditreader.R
 import com.inrivalz.redditreader.business.entities.RedditPost
+import com.inrivalz.redditreader.util.getColorFromAttribute
 import com.inrivalz.redditreader.util.inflate
 import com.inrivalz.redditreader.util.toPrettyDate
 import com.inrivalz.redditreader.util.toThousandString
@@ -32,6 +34,13 @@ class RedditPostViewHolder private constructor(
             post.comments.toThousandString()
         )
         post.thumbnail?.let { loadThumbnail(it) }
+        setReadStyle(post.read)
+    }
+
+    private fun setReadStyle(read: Boolean) {
+        val titleColorAttr = if (read) R.attr.colorTitleRead else R.attr.colorTitleUnread
+        vTitle.setTextColor(containerView.context.getColorFromAttribute(titleColorAttr))
+        vTitle.typeface = Typeface.create(Typeface.DEFAULT, if (read) Typeface.ITALIC else Typeface.NORMAL)
     }
 
     private fun loadThumbnail(url: String) {

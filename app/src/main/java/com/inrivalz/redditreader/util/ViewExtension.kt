@@ -1,8 +1,12 @@
 package com.inrivalz.redditreader.util
 
+import android.content.Context
+import android.util.TypedValue
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.annotation.AttrRes
+import androidx.annotation.ColorInt
 import androidx.annotation.LayoutRes
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.LifecycleOwner
@@ -26,4 +30,11 @@ fun <T> LiveData<T>.nonNullObserve(owner: LifecycleOwner, observer: (t: T) -> Un
     this.observe(owner, Observer {
         it?.let(observer)
     })
+}
+
+@ColorInt
+fun Context.getColorFromAttribute(@AttrRes attrId: Int): Int {
+    val typedValue = TypedValue()
+    theme.resolveAttribute(attrId, typedValue, true)
+    return typedValue.data
 }

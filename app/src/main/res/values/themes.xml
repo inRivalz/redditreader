@@ -6,6 +6,8 @@
         <item name="colorPrimaryDark">@color/orange100</item>
         <item name="colorAccent">@color/teal200</item>
         <item name="colorDivider">@color/black10</item>
+        <item name="colorTitleUnread">@color/black100</item>
+        <item name="colorTitleRead">@color/black25</item>
     </style>
 
 </resources>
