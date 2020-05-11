@@ -23,6 +23,12 @@ internal abstract class RedditPostsDao {
     abstract fun deleteUnreadPosts()
 
     @Transaction
+    open fun cleanAnInsert(redditPosts: List<RedditPost>) {
+        deleteUnreadPosts()
+        insertSorted(redditPosts)
+    }
+
+    @Transaction
     open fun insertSorted(redditPosts: List<RedditPost>) {
         val startPosition = getLastIndex() + 1
         val sortedList = redditPosts.mapIndexed { index, post ->

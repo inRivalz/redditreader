@@ -5,7 +5,6 @@ import com.inrivalz.redditreader.business.backend.RedditBackend
 import com.inrivalz.redditreader.business.entities.RedditPost
 import com.inrivalz.redditreader.network.NetworkState
 import io.reactivex.Observable
-import io.reactivex.Single
 import io.reactivex.rxkotlin.subscribeBy
 import io.reactivex.schedulers.Schedulers
 import io.reactivex.subjects.BehaviorSubject
@@ -41,9 +40,7 @@ internal class RedditPostBoundaryCallback(
                        onPostFetched(it)
                        callback.recordSuccess()
                    },
-                   onError = {
-                       callback.recordFailure(it)
-                   }
+                   onError = { callback.recordFailure(it) }
                )
         }
     }
@@ -59,18 +56,6 @@ internal class RedditPostBoundaryCallback(
                     },
                     onError = { callback.recordFailure(it) }
                 )
-        }
-    }
-
-    private fun blockingGetWithCallback(
-        single: Single<List<RedditPost>>,
-        callback: PagingRequestHelper.Request.Callback
-    ) {
-        try {
-            onPostFetched(single.blockingGet())
-            callback.recordSuccess()
-        } catch (exception: Exception) {
-            callback.recordFailure(exception)
         }
     }
 }

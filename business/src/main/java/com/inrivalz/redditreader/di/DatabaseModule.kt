@@ -7,10 +7,13 @@ import com.inrivalz.redditreader.db.RedditPostsDao
 import com.inrivalz.redditreader.repository.RedditPostsRepository
 import com.inrivalz.redditreader.repository.RedditPostsRepositoryImpl
 import org.koin.dsl.module
+import java.util.concurrent.Executor
+import java.util.concurrent.Executors
 
 val databaseModule = module {
-    single { provideRedditDatabase(get()) as RedditDatabase }
-    single { provideRedditPostsDao(get()) as RedditPostsDao }
+    factory { Executors.newSingleThreadExecutor() as Executor }
+    single { provideRedditDatabase(get()) }
+    single { provideRedditPostsDao(get()) }
     single { RedditPostsRepositoryImpl(get(), get(), get()) as RedditPostsRepository }
 }
 

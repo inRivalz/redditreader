@@ -30,7 +30,7 @@ class RedditPostListViewModelTest {
     fun setUp() {
         redditPostListViewModel = RedditPostListViewModel(itemSelectorDispatcher)
         redditPostListViewModel.listState.observeForever(listStateObserver)
-        redditPostListViewModel.networkState.observeForever(networkStateObserver)
+        redditPostListViewModel.refreshState.observeForever(networkStateObserver)
     }
 
     @Test
