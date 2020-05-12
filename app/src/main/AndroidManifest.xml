@@ -23,10 +23,11 @@
                 android:resource="@xml/file_paths" />
         </provider>
 
-        <activity android:name=".ui.RedditPostsActivity">
+        <activity
+            android:name=".ui.RedditPostsActivity"
+            android:configChanges="orientation">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
