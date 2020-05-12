@@ -46,7 +46,7 @@ class RedditPostDetailsFragment : Fragment(R.layout.fragment_reddit_post_details
 
     private fun populatePost(post: RedditPost) {
         with(post) {
-            vSubReddit.text = getString(R.string.reddit_details_subreddit_template, subredit)
+            vSubReddit.text = getString(R.string.reddit_details_subreddit_template, subreddit)
             vPostAuthor.text =
                 getString(R.string.reddit_details_user_template, author, created.toPrettyDate())
             vPostTitle.text = title

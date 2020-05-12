@@ -13,10 +13,9 @@ internal abstract class RedditPostsDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     abstract fun insert(redditPosts: List<RedditPost>)
 
-    @Transaction
-    @Query("SELECT a.name, a.title, a.author, a.created, a.thumbnail, a.comments, a.subredit, IFNULL(b.read, 0) as read, a.position " +
-            "FROM posts a LEFT JOIN posts_state b ON a.name = b.name " +
-            "WHERE b.name IS NULL OR b.dismissed = 0 ORDER BY position")
+    // Since there are two columns with the same name, Room takes the first one.
+    // So put first the one with stores the read state, this is done to avoid naming all the columns in the query.
+    @Query("SELECT s.read, p.* FROM posts p LEFT JOIN posts_state s ON p.name = s.name WHERE s.name IS NULL OR s.dismissed = 0 ORDER BY p.position")
     abstract fun getVisiblePosts(): DataSource.Factory<Int, RedditPost>
 
     @Query("SELECT MAX(position) FROM posts")
