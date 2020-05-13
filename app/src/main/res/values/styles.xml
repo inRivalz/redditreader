@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-
     <style name="PostItem"/>
     <style name="PostItem.Title" parent="TextAppearance.AppCompat.Title" />
     <style name="PostItem.Subtitle">
@@ -19,5 +18,4 @@
         <item name="android:textColor">?attr/colorPrimaryDark</item>
     </style>
     <style name="PostDetail.Action" parent="PostItem.Action" />
-
 </resources>

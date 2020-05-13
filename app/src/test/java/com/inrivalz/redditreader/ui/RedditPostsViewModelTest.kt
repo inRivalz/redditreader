@@ -9,7 +9,6 @@ import com.inrivalz.redditreader.util.Logger
 import com.nhaarman.mockitokotlin2.argWhere
 import com.nhaarman.mockitokotlin2.doReturn
 import com.nhaarman.mockitokotlin2.eq
-import com.nhaarman.mockitokotlin2.inOrder
 import com.nhaarman.mockitokotlin2.mock
 import com.nhaarman.mockitokotlin2.never
 import com.nhaarman.mockitokotlin2.verify
@@ -28,12 +27,10 @@ class RedditPostsViewModelTest {
 
     private lateinit var redditPostsViewModel: RedditPostsViewModel
 
-    private val stateObserver = mock<Observer<RedditPostsViewModel.UiState>>()
     private val eventObserver = mock<Observer<RedditPostsViewModel.UiEvent>>()
 
     private fun viewModelIsInitialized(disp: ItemSelectedDispatcher<RedditPost> = dispatcher) {
         redditPostsViewModel = RedditPostsViewModel(savedStateHandle, disp, logger)
-        redditPostsViewModel.uiState.observeForever(stateObserver)
         redditPostsViewModel.uiEvent.observeForever(eventObserver)
     }
 
@@ -44,7 +41,7 @@ class RedditPostsViewModelTest {
 
         dispatcher.onItemSelected(post)
 
-        verify(stateObserver).onChanged(argWhere { it is RedditPostsViewModel.UiState.ShowDetails })
+        verify(eventObserver).onChanged(argWhere { it is RedditPostsViewModel.UiEvent.ShowDetails })
     }
 
     @Test
@@ -55,30 +52,8 @@ class RedditPostsViewModelTest {
         }
         viewModelIsInitialized(mockDispatcher)
 
-        verify(stateObserver, never()).onChanged(eq(RedditPostsViewModel.UiState.ShowDetails))
+        verify(eventObserver, never()).onChanged(eq(RedditPostsViewModel.UiEvent.ShowDetails))
         verify(logger).error(redditPostsViewModel, exception = exception)
     }
 
-    @Test
-    fun `Should emit show master state if the user presses back and the view is in details`() {
-        val post = aRedditPost()
-        viewModelIsInitialized()
-        dispatcher.onItemSelected(post)
-
-        redditPostsViewModel.onBackPressed()
-
-        stateObserver.inOrder {
-            verify().onChanged(argWhere { it is RedditPostsViewModel.UiState.ShowDetails })
-            verify().onChanged(argWhere { it is RedditPostsViewModel.UiState.ShowMaster })
-        }
-    }
-
-    @Test
-    fun `Should emit exit application state if the user presses back and it is on master`() {
-        viewModelIsInitialized()
-
-        redditPostsViewModel.onBackPressed()
-
-        verify(eventObserver).onChanged(argWhere { it is RedditPostsViewModel.UiEvent.ExitApplication })
-    }
 }
