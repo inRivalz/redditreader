@@ -51,10 +51,13 @@
             android:layout_height="0dp"
             android:layout_margin="@dimen/grid_16"
             android:foreground="?attr/selectableItemBackground"
+            android:visibility="gone"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@id/vPostTitle"
-            app:layout_constraintDimensionRatio="H,1:1"/>
+            app:layout_constraintDimensionRatio="H,1:1"
+            tools:visibility="visible"
+            tools:src="@drawable/ic_image_placeholder"/>
 
         <TextView
             android:id="@+id/vPostComments"
@@ -63,11 +66,23 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/grid_8"
             android:drawableStart="@drawable/ic_reddit_comments"
+            android:visibility="gone"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/vPostImage"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintVertical_bias="0"
+            tools:visibility="visible"
             tools:text="1.5k Comments" />
+
+        <TextView
+            android:id="@+id/vEmptyDetailsText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/post_details_empty_description"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"/>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

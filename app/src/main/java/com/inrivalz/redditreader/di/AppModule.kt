@@ -15,8 +15,8 @@ import org.koin.dsl.module
 
 val appModule = module {
 
+    single { ItemSelectedDispatcherImpl<RedditPost>() as ItemSelectedDispatcher<RedditPost> }
     scope<RedditPostsActivity> {
-        scoped { ItemSelectedDispatcherImpl<RedditPost>() as ItemSelectedDispatcher<RedditPost> }
         viewModel { (handle: SavedStateHandle) -> RedditPostsViewModel(handle, get(), get()) }
 
         scope<RedditPostListFragment> {

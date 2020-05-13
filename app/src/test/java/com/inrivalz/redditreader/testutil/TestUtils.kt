@@ -8,6 +8,6 @@ fun aRedditPost(): RedditPost = RedditPost(
     author = "Author",
     created = 0,
     thumbnail = "thumbnail",
-    subredit = "",
+    subreddit = "",
     comments = 0
 )

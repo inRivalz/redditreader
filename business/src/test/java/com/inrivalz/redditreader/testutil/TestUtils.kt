@@ -9,5 +9,5 @@ fun aRedditPost(): RedditPost = RedditPost(
     created = 0,
     thumbnail = "thumbnail",
     comments = 0,
-    subredit = ""
+    subreddit = ""
 )

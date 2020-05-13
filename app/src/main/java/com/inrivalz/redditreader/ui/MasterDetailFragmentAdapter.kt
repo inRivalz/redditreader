@@ -7,7 +7,8 @@ import androidx.viewpager2.adapter.FragmentStateAdapter
 class MasterDetailFragmentAdapter(
     activity: FragmentActivity,
     private val masterFragmentFactory: () -> Fragment,
-    private val detailFragmentFactory: () -> Fragment
+    private val detailFragmentFactory: () -> Fragment,
+    private val twoPanes: Boolean
 ) : FragmentStateAdapter(activity) {
 
     override fun createFragment(position: Int): Fragment {
@@ -18,7 +19,7 @@ class MasterDetailFragmentAdapter(
         }
     }
 
-    override fun getItemCount(): Int = 2
+    override fun getItemCount(): Int = if (twoPanes) 1 else 2
 
     companion object {
         const val MASTER_POSITION = 0

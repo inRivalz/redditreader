@@ -6,13 +6,15 @@ import androidx.lifecycle.SavedStateHandle
 import com.inrivalz.redditreader.business.entities.RedditPost
 import com.inrivalz.redditreader.testutil.aRedditPost
 import com.inrivalz.redditreader.util.Logger
+import com.nhaarman.mockitokotlin2.any
 import com.nhaarman.mockitokotlin2.argWhere
 import com.nhaarman.mockitokotlin2.doReturn
 import com.nhaarman.mockitokotlin2.eq
-import com.nhaarman.mockitokotlin2.inOrder
 import com.nhaarman.mockitokotlin2.mock
 import com.nhaarman.mockitokotlin2.never
+import com.nhaarman.mockitokotlin2.spy
 import com.nhaarman.mockitokotlin2.verify
+import com.nhaarman.mockitokotlin2.whenever
 import io.reactivex.Observable
 import org.junit.Rule
 import org.junit.Test
@@ -23,18 +25,37 @@ class RedditPostsViewModelTest {
     val rule = InstantTaskExecutorRule()
 
     private val savedStateHandle = mock<SavedStateHandle>()
-    private val dispatcher = ItemSelectedDispatcherImpl<RedditPost>()
+    private val dispatcher = spy(ItemSelectedDispatcherImpl<RedditPost>())
     private val logger = mock<Logger>()
 
     private lateinit var redditPostsViewModel: RedditPostsViewModel
 
-    private val stateObserver = mock<Observer<RedditPostsViewModel.UiState>>()
     private val eventObserver = mock<Observer<RedditPostsViewModel.UiEvent>>()
 
     private fun viewModelIsInitialized(disp: ItemSelectedDispatcher<RedditPost> = dispatcher) {
         redditPostsViewModel = RedditPostsViewModel(savedStateHandle, disp, logger)
-        redditPostsViewModel.uiState.observeForever(stateObserver)
         redditPostsViewModel.uiEvent.observeForever(eventObserver)
+    }
+
+    @Test
+    fun `Should read post from saved state handle on initialized`() {
+        val post = aRedditPost()
+        whenever(savedStateHandle.get<RedditPost>("CURRENT_POST")).doReturn(post)
+
+        viewModelIsInitialized()
+
+        verify(savedStateHandle).get<RedditPost>("CURRENT_POST")
+        verify(dispatcher).onItemSelected(post)
+    }
+
+    @Test
+    fun `Should not emit event if post is first read from saved state handle on initialized`() {
+        val post = aRedditPost()
+        whenever(savedStateHandle.get<RedditPost>("CURRENT_POST")).doReturn(post)
+
+        viewModelIsInitialized()
+
+        verify(eventObserver, never()).onChanged(any())
     }
 
     @Test
@@ -44,7 +65,7 @@ class RedditPostsViewModelTest {
 
         dispatcher.onItemSelected(post)
 
-        verify(stateObserver).onChanged(argWhere { it is RedditPostsViewModel.UiState.ShowDetails })
+        verify(eventObserver).onChanged(argWhere { it is RedditPostsViewModel.UiEvent.ShowDetails })
     }
 
     @Test
@@ -55,30 +76,7 @@ class RedditPostsViewModelTest {
         }
         viewModelIsInitialized(mockDispatcher)
 
-        verify(stateObserver, never()).onChanged(eq(RedditPostsViewModel.UiState.ShowDetails))
+        verify(eventObserver, never()).onChanged(eq(RedditPostsViewModel.UiEvent.ShowDetails))
         verify(logger).error(redditPostsViewModel, exception = exception)
-    }
-
-    @Test
-    fun `Should emit show master state if the user presses back and the view is in details`() {
-        val post = aRedditPost()
-        viewModelIsInitialized()
-        dispatcher.onItemSelected(post)
-
-        redditPostsViewModel.onBackPressed()
-
-        stateObserver.inOrder {
-            verify().onChanged(argWhere { it is RedditPostsViewModel.UiState.ShowDetails })
-            verify().onChanged(argWhere { it is RedditPostsViewModel.UiState.ShowMaster })
-        }
-    }
-
-    @Test
-    fun `Should emit exit application state if the user presses back and it is on master`() {
-        viewModelIsInitialized()
-
-        redditPostsViewModel.onBackPressed()
-
-        verify(eventObserver).onChanged(argWhere { it is RedditPostsViewModel.UiEvent.ExitApplication })
     }
 }
