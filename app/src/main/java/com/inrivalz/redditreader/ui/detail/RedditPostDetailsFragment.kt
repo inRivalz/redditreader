@@ -45,6 +45,8 @@ class RedditPostDetailsFragment : Fragment(R.layout.fragment_reddit_post_details
     }
 
     private fun populatePost(post: RedditPost) {
+        vEmptyDetailsText.isVisible = false
+        vPostComments.isVisible = true
         with(post) {
             vSubReddit.text = getString(R.string.reddit_details_subreddit_template, subreddit)
             vPostAuthor.text =

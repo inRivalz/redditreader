@@ -9,4 +9,5 @@
     </plurals>
     <string name="reddit_details_subreddit_template">r/%1$s</string>
     <string name="reddit_details_user_template">Posted by u/%1$s %2$s</string>
+    <string name="post_details_empty_description">Select a post to see the details</string>
 </resources>
